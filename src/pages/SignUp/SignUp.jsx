@@ -2,14 +2,17 @@ import { useContext } from "react";
 import "./SignUp.css";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import Spinner from "../../components/Spinner/Spinner";
 
 const SignUp = () => {
-  const [state, dispatch, newUserSignUpHandler] = useContext(AuthContext);
+  const { state, dispatch, newUserSignUpHandler } = useContext(AuthContext);
 
-  return (
+  return state.isLoaded ? (
+    <Spinner />
+  ) : (
     <div>
       <h1>Tourister</h1>
-      <form method="post" action="newUserSignUpHandler">
+      <form method="post" onSubmit={newUserSignUpHandler}>
         <h2>Sign Up</h2>
         <div>
           <label id="full-name">Full Name</label>
@@ -20,7 +23,7 @@ const SignUp = () => {
             onChange={(e) =>
               dispatch({
                 type: "UPDATE_SIGN_UP_DETAILS",
-                payload: { key: "email", value: e.target.value },
+                payload: { key: "fullName", value: e.target.value },
               })
             }
           />
@@ -48,7 +51,7 @@ const SignUp = () => {
             onChange={(e) =>
               dispatch({
                 type: "UPDATE_SIGN_UP_DETAILS",
-                payload: { key: "email", value: e.target.value },
+                payload: { key: "username", value: e.target.value },
               })
             }
           />
@@ -62,7 +65,7 @@ const SignUp = () => {
             onChange={(e) =>
               dispatch({
                 type: "UPDATE_SIGN_UP_DETAILS",
-                payload: { key: "email", value: e.target.value },
+                payload: { key: "password", value: e.target.value },
               })
             }
           />
@@ -77,14 +80,25 @@ const SignUp = () => {
             onChange={(e) =>
               dispatch({
                 type: "UPDATE_SIGN_UP_DETAILS",
-                payload: { key: "email", value: e.target.value },
+                payload: { key: "confirmPassword", value: e.target.value },
               })
             }
           />
         </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit" name="sign-up">
+          Sign Up
+        </button>
+        <button type="submit" name="dummyDetails">
+          Fill Dummy Values
+        </button>
         <p>
-          Already have an account? <Link to="/sign-in">Sign in </Link>
+          Already have an account?
+          <Link
+            to="/sign-in"
+            onClick={() => dispatch({ type: "RESET_SIGN_UP" })}
+          >
+            Sign in
+          </Link>
         </p>
       </form>
     </div>

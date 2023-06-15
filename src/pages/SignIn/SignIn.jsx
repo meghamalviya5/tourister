@@ -2,10 +2,13 @@ import { useContext } from "react";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import Spinner from "../../components/Spinner/Spinner";
 
 const SignIn = () => {
   const { state, dispatch, signInHandler } = useContext(AuthContext);
-  return (
+  return state.isLoaded ? (
+    <Spinner />
+  ) : (
     <div>
       <h1>Tourister</h1>
       <form method="post" onSubmit={signInHandler}>

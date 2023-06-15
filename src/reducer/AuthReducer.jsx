@@ -10,12 +10,6 @@ export const authReducer = (state, action) => {
         },
       };
 
-    // case "SIGN_IN_PASSWORD":
-    //   return {
-    //     ...state,
-    //     signInDetails: { ...state.signInDetails, password: action.payload },
-    //   };
-
     case "SIGN_IN_SHOW_HIDE_PASSWORD":
       return {
         ...state,
@@ -26,6 +20,7 @@ export const authReducer = (state, action) => {
       };
 
     case "UPDATE_SIGN_UP_DETAILS":
+      console.log(action.payload, "in authreducer");
       return {
         ...state,
         signUpDetails: {
@@ -34,6 +29,40 @@ export const authReducer = (state, action) => {
         },
       };
 
+    case "SIGN_UP_SHOW_HIDE_PASSWORD":
+      return {
+        ...state,
+        signUpDetails: {
+          ...state.signUpDetails,
+          [action.payload.key]: !action.payload.value,
+        },
+      };
+
+    case "RESET_SIGN_IN":
+      return {
+        ...state,
+        signInDetails: {
+          ...state.signInDetails,
+          username: "",
+          password: "",
+        },
+      };
+
+    case "RESET_SIGN_UP":
+      return {
+        ...state,
+        signUpDetails: {
+          ...state.signUpDetails,
+          username: "",
+          password: "",
+          confirmPassword: "",
+          email: "",
+          fullName: "",
+        },
+      };
+
+    case "SET_LOADER":
+      return { ...state, isLoaded: !state.isLoaded };
     default:
       return { state };
   }
