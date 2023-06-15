@@ -14,10 +14,14 @@ const SignIn = () => {
           <label id="username">Username</label>
           <input
             id="username"
+            type="text"
             placeholder="Enter Username"
-            value={state.username}
+            value={state.signInDetails.username}
             onChange={(e) =>
-              dispatch({ type: "SIGN_IN_USERNAME", payload: e.target.value })
+              dispatch({
+                type: "UPDATE_SIGN_IN_DETAILS",
+                payload: { key: "username", value: e.target.value },
+              })
             }
           />
         </div>
@@ -25,15 +29,29 @@ const SignIn = () => {
           <label id="password">Password</label>
           <input
             id="password"
+            type={state.signInDetails.showPassword ? "text" : "password"}
             placeholder="Enter Password"
-            value={state.password}
+            value={state.signInDetails.password}
             onChange={(e) =>
-              dispatch({ type: "SIGN_IN_PASSWORD", payload: e.target.value })
+              dispatch({
+                type: "UPDATE_SIGN_IN_DETAILS",
+                payload: { key: "password", value: e.target.value },
+              })
             }
           />
+          <i
+            onClick={() => dispatch({ type: "SIGN_IN_SHOW_HIDE_PASSWORD" })}
+            className={`fa ${
+              state.signInDetails.showPassword ? "fa-eye" : "fa-eye-slash"
+            } `}
+          ></i>
         </div>
-        <button>Sign in</button>
-        <button>Guest Mode</button>
+        <button type="submit" name="signIn">
+          Sign in
+        </button>
+        <button type="submit" name="guestMode">
+          Guest Mode
+        </button>
         <Link to="/sign-up">
           <p>
             Create An Account{" "}

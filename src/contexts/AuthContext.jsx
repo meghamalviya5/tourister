@@ -15,6 +15,7 @@ const AuthProvider = ({ children }) => {
     signInDetails: {
       username: "",
       password: "",
+      showPassword: false,
       isLoaded: false,
       error: "",
     },
@@ -31,19 +32,38 @@ const AuthProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  console.log("in authreducer");
+  console.log("in auth context");
   const signInHandler = async (e) => {
     e.preventDefault();
+    // dispatch()
     //call login api
     try {
-      const response = await axios.post("/api/auth/login", {
-        username: state.signInDetails.username,
-        password: state.signInDetails.password,
-      });
+      let response = {};
+      if (e.nativeEvent.submitter.name === "guestMode") {
+        // dispatch({ type: "SIGN_IN_USERNAME", payload: "adarshbalika" });
+        // dispatch({ type: "SIGN_IN_PASSWORD", payload: "adarshBalika123" });
+        dispatch({
+          type: "UPDATE_SIGN_IN_DETAILS",
+          payload: { key: "username", value: "adarshbalika" },
+        });
+        dispatch({
+          type: "UPDATE_SIGN_IN_DETAILS",
+          payload: { key: "password", value: "adarshBalika123" },
+        });
+        response = await axios.post("/api/auth/login", {
+          username: "adarshbalika",
+          password: "adarshBalika123",
+        });
+      } else {
+        response = await axios.post("/api/auth/login", {
+          username: state.signInDetails.username,
+          password: state.signInDetails.password,
+        });
+      }
 
       console.log(response, "success response");
       if (response.status === 200) {
-        toast.success("Sign in successful!");
+        toast.success("Signed in Successfully!");
         navigate("/home");
       }
     } catch (error) {
@@ -58,6 +78,8 @@ const AuthProvider = ({ children }) => {
       }
     }
   };
+
+  const newUserSignUpHandler = () => {};
 
   const valueProp = { state, dispatch, signInHandler };
 
