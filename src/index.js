@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
 import { makeServer } from "./server";
 import AuthProvider from "./contexts/AuthContext";
+import Home from "./pages/Home/Home";
 
 // Call make Server
 makeServer();
@@ -16,7 +17,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <App />
+        <App>
+          <Home />
+        </App>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
