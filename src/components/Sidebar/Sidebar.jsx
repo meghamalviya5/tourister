@@ -11,7 +11,7 @@ const Sidebar = () => {
         <div className="flex flex-column flex-space-between sidebar">
           <div>
             <div className="pt-s black-color fw-semibold">
-              <Link to="">
+              <Link to="/">
                 <i className="fa fa-home"></i> &nbsp;
                 <span className="fw-bold">Home</span>
               </Link>
@@ -26,14 +26,14 @@ const Sidebar = () => {
 
             <div className="pt-s black-color fw-semibold">
               <Link to="bookmarks">
-                <i class="fa fa-regular fa-bookmark"></i> &nbsp;
+                <i className="fa fa-regular fa-bookmark"></i> &nbsp;
                 <span className="fw-bold">Bookmark</span>
               </Link>
             </div>
 
             <div className="pt-s black-color fw-semibold">
               <Link to="profile">
-                <i class="fa fa-solid fa-user"></i> &nbsp;
+                <i className="fa fa-solid fa-user"></i> &nbsp;
                 <span className="fw-bold">Profile</span>
               </Link>
             </div>
@@ -50,7 +50,7 @@ const Sidebar = () => {
                 <div className="fw-light grey-color">Username</div>
               </div>
             </div>
-            <div class="grey-color fw-bold">...</div>
+            <div className="grey-color fw-bold">...</div>
           </div>
         </div>
       </aside>

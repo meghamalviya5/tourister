@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./UserFeed.css";
 import "../../style.css";
+import { PostContext } from "../../contexts/PostContext";
+import { ToastContainer } from "react-toastify";
+import CreatePost from "../CreatePost/CreatePost";
 
 const UserFeed = () => {
+  const { state, dispatch, createUserPost } = useContext(PostContext);
+
   return (
     <div>
       <main className="mt-xl">
@@ -12,28 +17,13 @@ const UserFeed = () => {
               className="grey-bg br-full width-xl height-xl p-xs mr-xs"
               style={{ aspectRatio: 1 }}
             ></div>
-            <div className="w-full">
-              <textarea
-                cols="50"
-                rows="6"
-                className="w-full lynx-white-bg p-s outline-transparent border-none"
-                style={{ resize: "none" }}
-                placeholder="Write something interesting..."
-              ></textarea>
-              <div className="flex flex-space-between pt-s">
-                <div className="flex" style={{ gap: "1rem" }}>
-                  <i className=""></i>
-                  <i className=""></i>
-                  <i className=""></i>
-                </div>
-                <button className="primary-bg p-l pt-xs pb-xs secondary-color border-none outline-transparent">
-                  Post
-                </button>
-              </div>
-            </div>
+            {/* <form method="post" onSubmit={createUserPost}> */}
+            <CreatePost />
+            {/* </form> */}
           </div>
         </div>
       </main>
+      <ToastContainer />
     </div>
   );
 };

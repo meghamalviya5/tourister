@@ -11,6 +11,8 @@ import { v4 as uuid } from "uuid";
  * send GET Request at /api/posts
  * */
 
+console.log("in PostController");
+
 export const getAllpostsHandler = function () {
   return new Response(200, {}, { posts: this.db.posts });
 };
