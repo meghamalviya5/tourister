@@ -19,8 +19,14 @@ export const authReducer = (state, action) => {
         },
       };
 
+    case "UPDATE_LOGGED_IN_USER":
+      return {
+        ...state,
+        loggedInUser: action.payload,
+      };
+
     case "UPDATE_SIGN_UP_DETAILS":
-      console.log(action.payload, "in authreducer");
+      // console.log(action.payload, "in authreducer");
       return {
         ...state,
         signUpDetails: {

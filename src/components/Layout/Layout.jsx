@@ -1,12 +1,27 @@
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import UsersSidebar from "../../components/UsersSidebar/UsersSidebar";
+import React, { useContext, useRef } from "react";
+import { PostContext } from "../../contexts/PostContext";
 import "../../style.css";
 
 const Layout = () => {
+  const { dispatch } = useContext(PostContext);
+  const editDeleteDropdownRef = useRef();
+
+  const closeEditDeleteDropdown = (e) => {
+    if (e.target === editDeleteDropdownRef.current) {
+      dispatch({ type: "CLOSE_EDIT_DELETE_DROPDOWN", payload: false });
+    }
+  };
+
   return (
-    <div className="container">
+    <div
+      className="container"
+      ref={editDeleteDropdownRef}
+      onClick={(e) => closeEditDeleteDropdown(e)}
+    >
       <nav className="white-bg">
         <Navbar />
       </nav>

@@ -28,10 +28,12 @@ const AuthProvider = ({ children }) => {
       isLoaded: false,
       error: "",
     },
+    loggedInUser: null,
     isLoaded: false,
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
+  // console.log(state.loggedInUser, " ------loggedInUser");
 
   console.log("in auth context");
   const signInHandler = async (e) => {
@@ -60,15 +62,20 @@ const AuthProvider = ({ children }) => {
         });
       }
 
-      console.log(response, "success response");
+      // console.log(response, "success response");
       if (response.status === 200) {
         localStorage.setItem("token", response.data.encodedToken);
         toast.success("Signed in Successfully!");
+        dispatch({
+          type: "UPDATE_LOGGED_IN_USER",
+          payload: response.data.foundUser,
+        });
         dispatch({ type: "RESET_SIGN_IN" });
-        navigate("/home");
+        // navigate("/home");
+        navigate("/");
       }
     } catch (error) {
-      console.log(error, "error response");
+      // console.log(error, "error response");
       if (error.response.status === 404) {
         toast.error("Username not registered");
       } else if (error.response.status === 401) {
@@ -108,7 +115,7 @@ const AuthProvider = ({ children }) => {
           type: "UPDATE_SIGN_UP_DETAILS",
           payload: { key: "fullName", value: "Jade Johnson" },
         });
-        console.log("state:: ", state);
+        // console.log("state:: ", state);
       } else {
         response = await axios.post("/api/auth/signup", {
           username: state.signUpDetails.username,

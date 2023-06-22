@@ -9,6 +9,9 @@ import { makeServer } from "./server";
 import AuthProvider from "./contexts/AuthContext";
 import PostProvider from "./contexts/PostContext";
 
+// import your fontawesome library
+import "./fontawesome";
+
 // Call make Server
 makeServer();
 
