@@ -70,7 +70,7 @@
   animation: animate 0.3s;
 }
 
-.editModal button.update-post {
+.editModal .btn-close-post {
   position: absolute;
   top: 7px;
   right: 7px;

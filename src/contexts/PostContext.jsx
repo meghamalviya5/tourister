@@ -12,7 +12,8 @@ const encodedToken = localStorage.getItem("token");
 
 const PostProvider = ({ children }) => {
   const initialState = {
-    createPostContent: "",
+    // createPostContent: "",
+    // editPostContent: "",
     allPosts: [],
     users: [],
     editDeleteShow: false,
@@ -26,12 +27,12 @@ const PostProvider = ({ children }) => {
     getUsers();
   }, []);
 
-  const createUserPost = async () => {
+  const createUserPost = async (postContent) => {
     try {
       const response = await axios.post(
         "/api/posts",
         {
-          postData: { content: state.createPostContent },
+          postData: { content: postContent },
         },
         {
           headers: {
@@ -43,10 +44,10 @@ const PostProvider = ({ children }) => {
       if (response.status === 201) {
         dispatch({ type: "CREATE_POST", payload: response.data.posts });
         toast.success("Post created Successfully!");
-        dispatch({
-          type: "UPDATE_CONTENT",
-          payload: "",
-        });
+        // dispatch({
+        //   type: "UPDATE_CONTENT",
+        //   payload: "",
+        // });
       }
     } catch (error) {
       if (error.response.status === 500) {
@@ -83,17 +84,37 @@ const PostProvider = ({ children }) => {
     }
   };
 
-  const editPost = async (chosenPost) => {
-    const postFound = state.allPosts.find(
-      (post) => post._id === chosenPost._id
-    );
-    dispatch({ type: "SET_EDIT_MODAL_STATUS", payload: true });
-    dispatch({ type: "UPDATE_CONTENT", payload: postFound.content });
-  };
+  //  const editPost = async (chosenPost) => {
+  // const postFound = state.allPosts.find(
+  //   (post) => post._id === chosenPost._id
+  // );
+  // dispatch({ type: "SET_EDIT_MODAL_STATUS", payload: true });
+  // dispatch({ type: "UPDATE_CONTENT", payload: postFound.content });
+  // };
 
-  const updatePost = async () => {
+  const editUserPost = async (post) => {
     try {
-    } catch (error) {}
+      const response = await axios.post(
+        `/api/posts/edit/${post._id}`,
+        { postData: post.content },
+        {
+          headers: { authorization: encodedToken },
+        }
+      );
+
+      if (response.status === 200) {
+        dispatch({ type: "EDIT_POST", payload: response.data.posts });
+        toast.success("Post Updated Successfully!");
+      }
+    } catch (error) {
+      if (
+        error.response.status === 400 ||
+        error.response.status === 404 ||
+        error.response.status === 500
+      ) {
+        toast.error(error.response.message);
+      }
+    }
   };
 
   const deletePost = async (postId) => {
@@ -112,6 +133,105 @@ const PostProvider = ({ children }) => {
     }
   };
 
+  const likePost = async (likedPost) => {
+    try {
+      const response = await axios.post(
+        `/api/posts/like/${likedPost._id}`,
+        {},
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        dispatch({
+          type: "UPDATE_ALL_POSTS_STATE",
+          payload: response.data.posts,
+        });
+      }
+    } catch (error) {
+      if (error.response.status === 500) {
+        toast.error(error.response.statusText);
+      } else if (
+        error.response.status === 400 ||
+        error.response.status === 404
+      ) {
+        console.log(
+          JSON.parse(error.request.responseText),
+          "----parsed string"
+        );
+        console.log(JSON.parse(error.request.responseText).errors[0], "---[0]");
+        const errorText = JSON.parse(error.request.responseText).errors[0];
+        toast.error(errorText);
+      }
+      console.log(error);
+    }
+  };
+  const dislikePost = async (post) => {
+    try {
+      const response = await axios.post(
+        `/api/posts/dislike/${post._id}`,
+        {},
+        { headers: { authorization: encodedToken } }
+      );
+
+      if (response.status === 201) {
+        dispatch({
+          type: "UPDATE_ALL_POSTS_STATE",
+          payload: response.data.posts,
+        });
+      }
+    } catch (error) {
+      if (error.response.status === 500) {
+        toast.error(error.response.statusText);
+      } else if (
+        error.response.status === 400 ||
+        error.response.status === 404
+      ) {
+        // console.log(
+        //   JSON.parse(error.request.responseText),
+        //   "----parsed string"
+        // );
+        // console.log(JSON.parse(error.request.responseText).errors[0], "---[0]");
+        const errorText = JSON.parse(error.request.responseText).errors[0];
+        toast.error(errorText);
+      }
+      // console.log(error);
+    }
+  };
+
+  // const bookmarkPost = async (postId) => {
+  //   try {
+  //     const response = await axios.post(
+  //       `/api/users/bookmark/${postId}`,
+  //       {},
+  //       { headers: { authorization: encodedToken } }
+  //     );
+  //     if(response.status === 200){
+
+  //     }
+  //   } catch (error) {
+  //     if (error.response.status === 500) {
+  //       toast.error(error.response.statusText);
+  //     } else if (
+  //       error.response.status === 400 ||
+  //       error.response.status === 404
+  //     ) {
+  //       // console.log(
+  //       //   JSON.parse(error.request.responseText),
+  //       //   "----parsed string"
+  //       // );
+  //       // console.log(JSON.parse(error.request.responseText).errors[0], "---[0]");
+  //       const errorText = JSON.parse(error.request.responseText).errors[0];
+  //       toast.error(errorText);
+  //     }
+  //   }
+  // };
+
+  // const removeFromBookmark = () => {};
+
   const handleEditDeleteShow = () => {
     dispatch({
       type: "SET_EDIT_DELETE_DROPDOWN_STATUS",
@@ -123,8 +243,13 @@ const PostProvider = ({ children }) => {
     state,
     dispatch,
     createUserPost,
-    editPost,
+    //editPost,
     deletePost,
+    editUserPost,
+    dislikePost,
+    likePost,
+    // bookmarkPost,
+    // removeFromBookmark,
     handleEditDeleteShow,
   };
 

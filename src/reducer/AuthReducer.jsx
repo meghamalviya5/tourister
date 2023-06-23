@@ -71,5 +71,14 @@ export const authReducer = (state, action) => {
       return { ...state, isLoaded: !state.isLoaded };
     default:
       return { state };
+
+    case "UPDATE_BOOKMARKS":
+      return {
+        ...state,
+        loggedInUser: {
+          ...state.loggedInUser,
+          bookmarks: action.payload,
+        },
+      };
   }
 };

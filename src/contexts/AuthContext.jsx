@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const encodedToken = localStorage.getItem("token");
+
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -143,7 +145,76 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const valueProp = { state, dispatch, signInHandler, newUserSignUpHandler };
+  const bookmarkPost = async (postId) => {
+    try {
+      const response = await axios.post(
+        `/api/users/bookmark/${postId}`,
+        {},
+        { headers: { authorization: encodedToken } }
+      );
+      if (response.status === 200) {
+        dispatch({
+          type: "UPDATE_BOOKMARKS",
+          payload: response.data.bookmarks,
+        });
+      }
+    } catch (error) {
+      if (error.response.status === 500) {
+        toast.error(error.response.statusText);
+      } else if (
+        error.response.status === 400 ||
+        error.response.status === 404
+      ) {
+        // console.log(
+        //   JSON.parse(error.request.responseText),
+        //   "----parsed string"
+        // );
+        // console.log(JSON.parse(error.request.responseText).errors[0], "---[0]");
+        const errorText = JSON.parse(error.request.responseText).errors[0];
+        toast.error(errorText);
+      }
+      console.log(error, "----error in bookmark");
+    }
+  };
+
+  const removeFromBookmark = async (postId) => {
+    try {
+      const response = await axios.post(
+        `/api/users/remove-bookmark/${postId}`,
+        {},
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+      if (response.status === 200) {
+        dispatch({
+          type: "UPDATE_BOOKMARKS",
+          payload: response.data.bookmarks,
+        });
+      }
+    } catch (error) {
+      if (error.response.status === 500) {
+        toast.error(error.response.statusText);
+      } else if (
+        error.response.status === 400 ||
+        error.response.status === 404
+      ) {
+        const errorText = JSON.parse(error.request.responseText).errors[0];
+        toast.error(errorText);
+      }
+    }
+  };
+
+  const valueProp = {
+    state,
+    dispatch,
+    signInHandler,
+    newUserSignUpHandler,
+    bookmarkPost,
+    removeFromBookmark,
+  };
 
   return (
     <AuthContext.Provider value={valueProp}>{children}</AuthContext.Provider>

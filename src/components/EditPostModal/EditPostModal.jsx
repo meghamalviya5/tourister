@@ -1,11 +1,12 @@
 import React, { useContext, useRef } from "react";
 import ReactDom from "react-dom";
 import { PostContext } from "../../contexts/PostContext";
+import NewPost from "../NewPost/NewPost";
 
-const EditPostModal = () => {
+const EditPostModal = ({ selectedPost }) => {
   const { dispatch } = useContext(PostContext);
   const editModalRef = useRef();
-
+  console.log("selectedPOst--- ", selectedPost);
   const closeEditModal = (e) => {
     if (e.target === editModalRef.current) {
       dispatch({ type: "SET_EDIT_MODAL_STATUS", payload: false });
@@ -16,9 +17,9 @@ const EditPostModal = () => {
   return ReactDom.createPortal(
     <div className="container" ref={editModalRef} onClick={closeEditModal}>
       <div className="editModal">
-        <h1>Hello</h1>
+        <NewPost editPostDetail={selectedPost} />
         <button
-          className="update-post"
+          className="btn-close"
           onClick={() =>
             dispatch({ type: "SET_EDIT_MODAL_STATUS", payload: false })
           }

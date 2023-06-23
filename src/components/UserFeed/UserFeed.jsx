@@ -21,11 +21,17 @@ import EditDeletePost from "../EditDeletePost/EditDeletePost";
 import PostHeader from "../PostHeader/PostHeader";
 
 const UserFeed = () => {
-  const { state, handleEditDeleteShow } = useContext(PostContext);
-  const { state: authState } = useContext(AuthContext);
+  const { state, handleEditDeleteShow, dislikePost, likePost } =
+    useContext(PostContext);
+
+  const {
+    state: authState,
+    bookmarkPost,
+    removeFromBookmark,
+  } = useContext(AuthContext);
 
   //console.log(authState.loggedInUser, "---loggedInUser in context");
-  console.log("State in userfeed -- ", state);
+  // console.log("State in userfeed -- ", state);
   const findUser = (userName) => {
     let name = [];
     const user = state.users.find((user) => user.username === userName);
@@ -38,7 +44,7 @@ const UserFeed = () => {
     <div>
       <main className="mt-xl">
         <NewPost />
-        {/* <PostHeader /> */}
+        <PostHeader />
         {console.log("State in userfeed inside-- ", state.allPosts)}
         {state?.allPosts?.map((post) => (
           <div className="white-bg mr-xxl p-xs mt-s">
@@ -71,8 +77,33 @@ const UserFeed = () => {
                 </div>
                 <p className="pr-s pt-xs">{post.content}</p>
                 <div className="flex flex-row nowrap flex-space-between pb-xs pt-m pr-s flex-align-center">
-                  <FontAwesomeIcon icon={faHeartLight} />
-                  <FontAwesomeIcon icon={faBookmarkLight} />
+                  {post.likes.likedBy.find(
+                    (user) => user.username === authState.loggedInUser.username
+                  ) ? (
+                    <FontAwesomeIcon
+                      icon={faHeartSolid}
+                      onClick={() => dislikePost(post)}
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      icon={faHeartLight}
+                      onClick={() => likePost(post)}
+                    />
+                  )}
+                  {post.likes.likeCount > 0 ? post.likes.likeCount : null}
+                  {authState.loggedInUser.bookmarks.find(
+                    (postId) => postId === post._id
+                  ) ? (
+                    <FontAwesomeIcon
+                      icon={faBookmarkSolid}
+                      onClick={() => removeFromBookmark(post._id)}
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      icon={faBookmarkLight}
+                      onClick={() => bookmarkPost(post._id)}
+                    />
+                  )}
                 </div>
               </div>
             </div>
