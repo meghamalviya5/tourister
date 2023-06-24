@@ -13,8 +13,12 @@ export const postReducer = (state, action) => {
     // case "UPDATE_CONTENT":
     //   return { ...state, createPostContent: action.payload };
 
-    case "SET_EDIT_DELETE_DROPDOWN_STATUS":
-      return { ...state, editDeleteShow: action.payload };
+    case "SET_SELECTED_POST_ID":
+      return {
+        ...state,
+        selectedPostForEditDelete: action.payload,
+        // editDeleteShow: action.payload,
+      };
 
     case "EDIT_POST":
       return { ...state, allPosts: action.payload };

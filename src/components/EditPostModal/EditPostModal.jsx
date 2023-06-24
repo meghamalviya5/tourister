@@ -10,7 +10,7 @@ const EditPostModal = ({ selectedPost }) => {
   const closeEditModal = (e) => {
     if (e.target === editModalRef.current) {
       dispatch({ type: "SET_EDIT_MODAL_STATUS", payload: false });
-      dispatch({ type: "SET_EDIT_DELETE_DROPDOWN_STATUS", payload: false });
+      dispatch({ type: "SET_SELECTED_POST_ID", payload: false });
     }
   };
   console.log("in edit modal");

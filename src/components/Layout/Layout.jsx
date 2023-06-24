@@ -12,7 +12,7 @@ const Layout = () => {
 
   const closeEditDeleteDropdown = (e) => {
     if (e.target === editDeleteDropdownRef.current) {
-      dispatch({ type: "SET_EDIT_DELETE_DROPDOWN_STATUS", payload: false });
+      dispatch({ type: "SET_SELECTED_POST_ID", payload: false });
     }
   };
 

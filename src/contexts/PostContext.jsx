@@ -16,7 +16,8 @@ const PostProvider = ({ children }) => {
     // editPostContent: "",
     allPosts: [],
     users: [],
-    editDeleteShow: false,
+    selectedPostForEditDelete: "",
+    // editDeleteShow: false,
     editPostModal: false,
   };
 
@@ -96,14 +97,16 @@ const PostProvider = ({ children }) => {
     try {
       const response = await axios.post(
         `/api/posts/edit/${post._id}`,
-        { postData: post.content },
+        { postData: { content: post.content } },
         {
           headers: { authorization: encodedToken },
         }
       );
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         dispatch({ type: "EDIT_POST", payload: response.data.posts });
+        dispatch({ type: "SET_EDIT_MODAL_STATUS", payload: false });
+        dispatch({ type: "SET_SELECTED_POST_ID", payload: false });
         toast.success("Post Updated Successfully!");
       }
     } catch (error) {
@@ -198,44 +201,13 @@ const PostProvider = ({ children }) => {
         const errorText = JSON.parse(error.request.responseText).errors[0];
         toast.error(errorText);
       }
-      // console.log(error);
     }
   };
 
-  // const bookmarkPost = async (postId) => {
-  //   try {
-  //     const response = await axios.post(
-  //       `/api/users/bookmark/${postId}`,
-  //       {},
-  //       { headers: { authorization: encodedToken } }
-  //     );
-  //     if(response.status === 200){
-
-  //     }
-  //   } catch (error) {
-  //     if (error.response.status === 500) {
-  //       toast.error(error.response.statusText);
-  //     } else if (
-  //       error.response.status === 400 ||
-  //       error.response.status === 404
-  //     ) {
-  //       // console.log(
-  //       //   JSON.parse(error.request.responseText),
-  //       //   "----parsed string"
-  //       // );
-  //       // console.log(JSON.parse(error.request.responseText).errors[0], "---[0]");
-  //       const errorText = JSON.parse(error.request.responseText).errors[0];
-  //       toast.error(errorText);
-  //     }
-  //   }
-  // };
-
-  // const removeFromBookmark = () => {};
-
-  const handleEditDeleteShow = () => {
+  const handleEditDeleteShow = (postId) => {
     dispatch({
-      type: "SET_EDIT_DELETE_DROPDOWN_STATUS",
-      payload: !state.editDeleteShow,
+      type: "SET_SELECTED_POST_ID",
+      payload: postId,
     });
   };
 
@@ -243,13 +215,10 @@ const PostProvider = ({ children }) => {
     state,
     dispatch,
     createUserPost,
-    //editPost,
     deletePost,
     editUserPost,
     dislikePost,
     likePost,
-    // bookmarkPost,
-    // removeFromBookmark,
     handleEditDeleteShow,
   };
 

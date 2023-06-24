@@ -66,12 +66,18 @@ const UserFeed = () => {
                   </div>
                   {authState.loggedInUser.username === post.username ? (
                     <div className="relative">
-                      <p className="" onClick={handleEditDeleteShow}>
+                      <p
+                        className=""
+                        onClick={() => handleEditDeleteShow(post._id)}
+                      >
                         ∙∙∙
                       </p>
-                      {state.editDeleteShow ? (
+                      {state.selectedPostForEditDelete === post._id ? (
                         <EditDeletePost selectedPost={post} />
                       ) : null}
+                      {/* {state.editDeleteShow ? (
+                        <EditDeletePost selectedPost={post} />
+                      ) : null} */}
                     </div>
                   ) : null}
                 </div>
