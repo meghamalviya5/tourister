@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+
 // get our fontawesome imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -75,9 +76,6 @@ const UserFeed = () => {
                       {state.selectedPostForEditDelete === post._id ? (
                         <EditDeletePost selectedPost={post} />
                       ) : null}
-                      {/* {state.editDeleteShow ? (
-                        <EditDeletePost selectedPost={post} />
-                      ) : null} */}
                     </div>
                   ) : null}
                 </div>

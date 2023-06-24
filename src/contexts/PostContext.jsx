@@ -12,12 +12,9 @@ const encodedToken = localStorage.getItem("token");
 
 const PostProvider = ({ children }) => {
   const initialState = {
-    // createPostContent: "",
-    // editPostContent: "",
     allPosts: [],
     users: [],
     selectedPostForEditDelete: "",
-    // editDeleteShow: false,
     editPostModal: false,
   };
 
@@ -84,14 +81,6 @@ const PostProvider = ({ children }) => {
       }
     }
   };
-
-  //  const editPost = async (chosenPost) => {
-  // const postFound = state.allPosts.find(
-  //   (post) => post._id === chosenPost._id
-  // );
-  // dispatch({ type: "SET_EDIT_MODAL_STATUS", payload: true });
-  // dispatch({ type: "UPDATE_CONTENT", payload: postFound.content });
-  // };
 
   const editUserPost = async (post) => {
     try {

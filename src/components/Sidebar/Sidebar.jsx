@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useContext } from "react";
 import "./Sidebar.css";
 import "../../style.css";
+import { AuthContext } from "../../contexts/AuthContext";
 // import "font-awesome/css/font-awesome.min.css";
 
 const Sidebar = () => {
+  const {
+    state: { loggedInUser },
+  } = useContext(AuthContext);
+
   return (
     <React.Fragment>
       <aside className="p-s pt-xl pl-xxl ml-m sidebar1">
@@ -46,8 +51,8 @@ const Sidebar = () => {
             <div className="flex">
               <div className="grey-bg br-full width-xl height-xl"></div>
               <div className="flex flex-column ml-xs">
-                <div className="fw-bold">Full Name</div>
-                <div className="fw-light grey-color">Username</div>
+                <div className="fw-bold">{`${loggedInUser?.firstName} ${loggedInUser?.lastName}`}</div>
+                <div className="fw-light grey-color">{`@${loggedInUser?.username}`}</div>
               </div>
             </div>
             <div className="grey-color fw-bold">...</div>
