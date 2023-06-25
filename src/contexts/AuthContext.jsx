@@ -210,11 +210,14 @@ const AuthProvider = ({ children }) => {
 
   const getUserBookmarks = async () => {
     try {
-      const response = await axios.get(`/api/users/bookmark/`, {
+      const response = await axios.get(`/api/users/bookmark`, {
         headers: { authorization: encodedToken },
       });
-      if (response === 200) {
-        dispatch({ type: "USER_BOOKMARKS", payload: response.data.bookmarks });
+      if (response.status === 200) {
+        dispatch({
+          type: "UPDATE_USER_BOOKMARKS",
+          payload: response.data.bookmarks,
+        });
       }
     } catch (error) {
       if (error.response.status === 404) {

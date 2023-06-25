@@ -3,7 +3,7 @@ import { AuthContext, PostContext } from "../..";
 import PostCard from "../PostCard/PostCard";
 
 const UserPosts = ({ selectedUser }) => {
-  // const { state } = useContext(PostContext);
+  const { state } = useContext(PostContext);
   const {
     state: { loggedInUserBookmarks },
   } = useContext(AuthContext);
@@ -16,7 +16,7 @@ const UserPosts = ({ selectedUser }) => {
           <PostCard post={post} />
         ))} */}
 
-      {loggedInUserBookmarks.map((post) => (
+      {state?.userPosts.map((post) => (
         <PostCard post={post} />
       ))}
     </div>

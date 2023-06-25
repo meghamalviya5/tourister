@@ -7,10 +7,10 @@ const Bookmarks = () => {
     state: { allPosts },
   } = useContext(PostContext);
   const {
-    state: { loggedInUser },
+    state: { loggedInUserBookmarks },
   } = useContext(AuthContext);
 
-  const bookmarkedPosts = loggedInUser.bookmarks.map((bookmarkPostId) => {
+  const bookmarkedPosts = loggedInUserBookmarks.map((bookmarkPostId) => {
     return allPosts.find((post) => post._id === bookmarkPostId);
   });
 

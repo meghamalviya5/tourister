@@ -14,6 +14,7 @@ const PostProvider = ({ children }) => {
   const initialState = {
     allPosts: [],
     users: [],
+    userPosts: [],
     selectedPostForEditDelete: "",
     editPostModal: false,
   };
@@ -193,6 +194,19 @@ const PostProvider = ({ children }) => {
     }
   };
 
+  const getUserPosts = async (username) => {
+    try {
+      const response = await axios.get(`/api/posts/user/${username}`);
+      if (response.status === 200) {
+        dispatch({ type: "UPDATE_USER_POSTS", payload: response.data.posts });
+      }
+    } catch (error) {
+      if (error.response.status === 500) {
+        toast.error(error.response.statusText);
+      }
+    }
+  };
+
   const handleEditDeleteShow = (postId) => {
     dispatch({
       type: "SET_SELECTED_POST_ID",
@@ -216,6 +230,7 @@ const PostProvider = ({ children }) => {
     editUserPost,
     dislikePost,
     likePost,
+    getUserPosts,
     handleEditDeleteShow,
     findUser,
   };

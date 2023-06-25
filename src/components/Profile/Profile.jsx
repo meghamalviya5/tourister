@@ -10,7 +10,7 @@ const Profile = () => {
     <main className="p-s">
       <UserProfile selectedUser={user} />
       <h3 className="m-s">Your Posts</h3>
-      <UserPosts selectedUser={user} />
+      <UserPosts />
     </main>
   );
 };

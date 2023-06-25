@@ -7,6 +7,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { PostContext } from "../../contexts/PostContext";
 
 const Sidebar = () => {
   const {
@@ -14,6 +15,8 @@ const Sidebar = () => {
     signOutHandler,
     getUserBookmarks,
   } = useContext(AuthContext);
+
+  const { getUserPosts } = useContext(PostContext);
 
   return (
     <React.Fragment>
@@ -53,7 +56,11 @@ const Sidebar = () => {
               Create POST
             </button>
           </div>
-          <Link to="profile" state={loggedInUser}>
+          <Link
+            to="profile"
+            state={loggedInUser}
+            onClick={() => getUserPosts(loggedInUser?.username)}
+          >
             <div className="flex flex-space-between flex-align-center">
               <div className="flex">
                 <div className="grey-bg br-full width-xl height-xl"></div>

@@ -29,6 +29,9 @@ export const postReducer = (state, action) => {
     case "SET_EDIT_MODAL_STATUS":
       return { ...state, editPostModal: action.payload };
 
+    case "UPDATE_USER_POSTS":
+      return { ...state, userPosts: action.payload };
+
     default:
       return { state };
   }

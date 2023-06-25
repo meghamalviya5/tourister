@@ -15,6 +15,7 @@ const UsersSidebar = () => {
 
   const {
     state: { users },
+    getUserPosts,
   } = useContext(PostContext);
 
   console.log("in user sidebar");
@@ -41,7 +42,11 @@ const UsersSidebar = () => {
           <div>Suggested Users</div>
         </div>
         {usersToFollow.map((user) => (
-          <Link to="profile" state={user}>
+          <Link
+            to="profile"
+            state={user}
+            onClick={() => getUserPosts(user.username)}
+          >
             <div className="flex p-s flex-space-between flex-align-center">
               <div className="grey-bg br-full width-xl height-xl"></div>
               <div className="flex flex-column">
