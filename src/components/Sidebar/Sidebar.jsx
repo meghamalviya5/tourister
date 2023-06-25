@@ -12,6 +12,7 @@ const Sidebar = () => {
   const {
     state: { loggedInUser },
     signOutHandler,
+    getUserBookmarks,
   } = useContext(AuthContext);
 
   return (
@@ -34,9 +35,9 @@ const Sidebar = () => {
             </div>
 
             <div className="pt-s black-color fw-semibold">
-              <Link to="bookmarks">
+              <Link to="bookmarks" onClick={getUserBookmarks}>
                 <i className="fa fa-regular fa-bookmark"></i> &nbsp;
-                <span className="fw-bold">Bookmark</span>
+                <span className="fw-bold">Bookmarks</span>
               </Link>
             </div>
 
@@ -52,7 +53,7 @@ const Sidebar = () => {
               Create POST
             </button>
           </div>
-          <Link to="profile">
+          <Link to="profile" state={loggedInUser}>
             <div className="flex flex-space-between flex-align-center">
               <div className="flex">
                 <div className="grey-bg br-full width-xl height-xl"></div>

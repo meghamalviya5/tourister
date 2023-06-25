@@ -31,6 +31,7 @@ const AuthProvider = ({ children }) => {
       error: "",
     },
     loggedInUser: null,
+    loggedInUserBookmarks: [],
     isLoaded: false,
   };
 
@@ -207,6 +208,24 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const getUserBookmarks = async () => {
+    try {
+      const response = await axios.get(`/api/users/bookmark/`, {
+        headers: { authorization: encodedToken },
+      });
+      if (response === 200) {
+        dispatch({ type: "USER_BOOKMARKS", payload: response.data.bookmarks });
+      }
+    } catch (error) {
+      if (error.response.status === 404) {
+        const errorText = JSON.parse(error.request.responseText).errors[0];
+        toast.error(errorText);
+      } else if (error.response.status === 500) {
+        toast.error(error.response.statusText);
+      }
+    }
+  };
+
   const signOutHandler = () => {
     localStorage.removeItem("token");
     dispatch({ type: "USER_SIGN_OUT" });
@@ -221,6 +240,7 @@ const AuthProvider = ({ children }) => {
     newUserSignUpHandler,
     bookmarkPost,
     removeFromBookmark,
+    getUserBookmarks,
   };
 
   return (

@@ -6,6 +6,7 @@ import { faSearch, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { PostContext } from "../../contexts/PostContext";
+import { Link } from "react-router-dom";
 
 const UsersSidebar = () => {
   const {
@@ -40,20 +41,22 @@ const UsersSidebar = () => {
           <div>Suggested Users</div>
         </div>
         {usersToFollow.map((user) => (
-          <div className="flex p-s flex-space-between flex-align-center">
-            <div className="grey-bg br-full width-xl height-xl"></div>
-            <div className="flex flex-column">
-              <a href="">
-                <div className="fw-bold">{`${user?.firstName} ${user?.lastName}`}</div>
-                <div className="fw-light grey-color">{`@${user?.username}`}</div>
-              </a>
+          <Link to="profile" state={user}>
+            <div className="flex p-s flex-space-between flex-align-center">
+              <div className="grey-bg br-full width-xl height-xl"></div>
+              <div className="flex flex-column">
+                <a href="">
+                  <div className="fw-bold">{`${user?.firstName} ${user?.lastName}`}</div>
+                  <div className="fw-light grey-color">{`@${user?.username}`}</div>
+                </a>
+              </div>
+              <div className="primary-color fw-bold">
+                <a href="">
+                  Follow <FontAwesomeIcon icon={faPlus} />
+                </a>
+              </div>
             </div>
-            <div className="primary-color fw-bold">
-              <a href="">
-                Follow <FontAwesomeIcon icon={faPlus} />
-              </a>
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
     </aside>

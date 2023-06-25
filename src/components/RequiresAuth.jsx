@@ -5,7 +5,7 @@ import { Navigate, useLocation } from "react-router";
 const RequiresAuth = ({ children }) => {
   const { state } = useContext(AuthContext);
   const location = useLocation();
-
+  console.log("location props - ", location);
   // console.log("state.loggedInUser in RequiresAuth: ", state.loggedInUser);
   return state.loggedInUser ? (
     children
