@@ -6,14 +6,18 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
 import { makeServer } from "./server";
-import AuthProvider from "./contexts/AuthContext";
-import PostProvider from "./contexts/PostContext";
+import AuthProvider, { AuthContext } from "./contexts/AuthContext";
+import PostProvider, { PostContext } from "./contexts/PostContext";
 
 // import your fontawesome library
 import "./fontawesome";
 
 // Call make Server
 makeServer();
+
+export { PostContext };
+
+export { AuthContext };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

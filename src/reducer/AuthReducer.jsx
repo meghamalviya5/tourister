@@ -69,8 +69,6 @@ export const authReducer = (state, action) => {
 
     case "SET_LOADER":
       return { ...state, isLoaded: !state.isLoaded };
-    default:
-      return { state };
 
     case "UPDATE_BOOKMARKS":
       return {
@@ -80,5 +78,11 @@ export const authReducer = (state, action) => {
           bookmarks: action.payload,
         },
       };
+
+    case "USER_SIGN_OUT":
+      return { ...state, loggedInUser: null };
+
+    default:
+      return { state };
   }
 };

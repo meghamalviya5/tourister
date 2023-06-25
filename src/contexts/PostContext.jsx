@@ -200,6 +200,14 @@ const PostProvider = ({ children }) => {
     });
   };
 
+  const findUser = (userName) => {
+    let name = [];
+    const user = state.users.find((user) => user.username === userName);
+    name[0] = user?.firstName;
+    name[1] = user?.lastName;
+    return name;
+  };
+
   const valueProp = {
     state,
     dispatch,
@@ -209,6 +217,7 @@ const PostProvider = ({ children }) => {
     dislikePost,
     likePost,
     handleEditDeleteShow,
+    findUser,
   };
 
   return (

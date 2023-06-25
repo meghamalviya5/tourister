@@ -31,7 +31,14 @@ function App() {
           />
           <Route path="explore" element={<Explore />} />
           <Route path="bookmarks" element={<Bookmarks />} />
-          <Route path="profile" element={<Profile />} />
+          <Route
+            path="profile"
+            element={
+              <RequiresAuth>
+                <Profile />
+              </RequiresAuth>
+            }
+          />
         </Route>
         {/* <Route path="/home" element={<Home />}>
           <Route path="" element={<UserFeed />} />

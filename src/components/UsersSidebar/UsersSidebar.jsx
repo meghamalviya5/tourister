@@ -21,7 +21,7 @@ const UsersSidebar = () => {
   console.log("users -----", users);
 
   const usersToFollow = users.filter(
-    (user) => user.username !== loggedInUser.username
+    (user) => user?.username !== loggedInUser?.username
   );
 
   return (

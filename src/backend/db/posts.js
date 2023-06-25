@@ -1,4 +1,3 @@
-import { v4 as uuid } from "uuid";
 import { formatDate } from "../utils/authUtils";
 
 /**
@@ -10,27 +9,102 @@ export const posts = [
   {
     _id: "7dacf200-1047-11ee-be56-0242ac120002",
     content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+      "Mount Bromo...Mount Bromo is an active volcano and  part of the Tengger massif, in East Java. " +
+      "At 2,329 meters it is not the highest peak of the  massif, but it is the most well known. The area is " +
+      "one of the most visited tourist attractions in  Java.",
     likes: {
       likeCount: 0,
       likedBy: [],
       dislikedBy: [],
     },
-    username: "adarshbalika",
-    createdAt: formatDate(),
+    username: "meghamalviya",
+    createdAt: "2023-06-25T09:40:00.000+05:30",
     updatedAt: formatDate(),
   },
   {
     _id: "u7dacf534-1047-11ee-be56-0242ac120002",
     content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+      "Amazon Rainforest...If you lived long enough to count  that high, you could count 390   billion trees in the Amazon rainforest.  This statistic is mind-boggling, to be sure, " +
+      "but then the Amazon rainforest is one awesome  piece of nature, covering about ¾ of the Amazon " +
+      "River basin",
     likes: {
       likeCount: 0,
       likedBy: [],
       dislikedBy: [],
     },
     username: "shubhamsoni",
-    createdAt: formatDate(),
+    createdAt: "2023-06-25T18:30:00.000+05:30",
+    updatedAt: formatDate(),
+  },
+  {
+    _id: "u7dacf534-1047-11ee-be56-0242ac120002",
+    content:
+      "Victoria Falls...If you thought that Niagara Falls was large, well,  Victoria Falls dwarfs it with its colossal curtain " +
+      "of water that stretches for 1,708 metres, reaching  108 metres in height.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "meghamalviya",
+    createdAt: "2023-06-25T11:10:00.000+05:30",
+    updatedAt: formatDate(),
+  },
+  {
+    _id: "u7dacf534-1047-11ee-be56-0242ac120002",
+    content:
+      "Maldives...Located in the middle of the Indian Ocean, the  idyllic Maldives archipelago is spellbindingly " +
+      "beautiful.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "hbingley1",
+    createdAt: "2023-06-25T23:00:00.000+05:30",
+    updatedAt: formatDate(),
+  },
+  {
+    _id: "u7dacf534-1047-11ee-be56-0242ac120002",
+    content:
+      "Lake Baikal...The deepest and oldest lake on Earth, Lake  Baikal is reputed to boast some of the clearest " +
+      "and cleanest waters around.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "rshawe2",
+    createdAt: "2023-06-25T03:45:00.000+05:30",
+    updatedAt: formatDate(),
+  },
+  {
+    _id: "u7dacf534-1047-11ee-be56-0242ac120002",
+    content:
+      "Mount Everest...As the highest mountain in the world, Mount  Everest attracts climbers of all levels, from well experienced mountaineers to novice  climbers willing to pay substantial sums " +
+      "to professional mountain guides  to complete a successful climb. ",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "hbingley1",
+    createdAt: "2023-06-25T17:25:00.000+05:30",
+    updatedAt: formatDate(),
+  },
+  {
+    _id: "u7dacf534-1047-11ee-be56-0242ac120002",
+    content:
+      "Angel Falls...The tallest waterfall in the world, Angel Falls  in Venezuela certainly makes for one of the most " +
+      "spectacular sights imaginable. Due to its remote location in Canaima National  Park, Angel Falls is quite hard to visit, " +
+      "though its stunning setting and awe-inspiring  scenery certainly makes it well worth the effort.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "atuny0",
+    createdAt: "2023-06-25T10:20:00.000+05:30",
     updatedAt: formatDate(),
   },
 ];

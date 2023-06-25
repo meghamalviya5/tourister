@@ -47,15 +47,15 @@ const AuthProvider = ({ children }) => {
       if (e.nativeEvent.submitter.name === "guestMode") {
         dispatch({
           type: "UPDATE_SIGN_IN_DETAILS",
-          payload: { key: "username", value: "adarshbalika" },
+          payload: { key: "username", value: "meghamalviya" },
         });
         dispatch({
           type: "UPDATE_SIGN_IN_DETAILS",
-          payload: { key: "password", value: "adarshBalika123" },
+          payload: { key: "password", value: "meghamalviya123" },
         });
         response = await axios.post("/api/auth/login", {
-          username: "adarshbalika",
-          password: "adarshBalika123",
+          username: "meghamalviya",
+          password: "meghamalviya123",
         });
       } else {
         response = await axios.post("/api/auth/login", {
@@ -207,10 +207,17 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const signOutHandler = () => {
+    localStorage.removeItem("token");
+    dispatch({ type: "USER_SIGN_OUT" });
+    toast.success("Signed Out Successfully!");
+  };
+
   const valueProp = {
     state,
     dispatch,
     signInHandler,
+    signOutHandler,
     newUserSignUpHandler,
     bookmarkPost,
     removeFromBookmark,

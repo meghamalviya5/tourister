@@ -5,9 +5,13 @@ import "../../style.css";
 import { AuthContext } from "../../contexts/AuthContext";
 // import "font-awesome/css/font-awesome.min.css";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOut } from "@fortawesome/free-solid-svg-icons";
+
 const Sidebar = () => {
   const {
     state: { loggedInUser },
+    signOutHandler,
   } = useContext(AuthContext);
 
   return (
@@ -37,9 +41,10 @@ const Sidebar = () => {
             </div>
 
             <div className="pt-s black-color fw-semibold">
-              <Link to="profile">
-                <i className="fa fa-solid fa-user"></i> &nbsp;
-                <span className="fw-bold">Profile</span>
+              <Link to="/landing-page" onClick={signOutHandler}>
+                {/* <i className="fa fa-solid fa-user"></i> &nbsp; */}
+                <FontAwesomeIcon icon={faSignOut} /> &nbsp;
+                <span className="fw-bold">Sign Out</span>
               </Link>
             </div>
 
@@ -47,16 +52,18 @@ const Sidebar = () => {
               Create POST
             </button>
           </div>
-          <div className="flex flex-space-between flex-align-center">
-            <div className="flex">
-              <div className="grey-bg br-full width-xl height-xl"></div>
-              <div className="flex flex-column ml-xs">
-                <div className="fw-bold">{`${loggedInUser?.firstName} ${loggedInUser?.lastName}`}</div>
-                <div className="fw-light grey-color">{`@${loggedInUser?.username}`}</div>
+          <Link to="profile">
+            <div className="flex flex-space-between flex-align-center">
+              <div className="flex">
+                <div className="grey-bg br-full width-xl height-xl"></div>
+                <div className="flex flex-column ml-xs">
+                  <div className="fw-bold">{`${loggedInUser?.firstName} ${loggedInUser?.lastName}`}</div>
+                  <div className="fw-light grey-color">{`@${loggedInUser?.username}`}</div>
+                </div>
               </div>
+              {/* <div className="grey-color fw-bold">...</div> */}
             </div>
-            <div className="grey-color fw-bold">...</div>
-          </div>
+          </Link>
         </div>
       </aside>
     </React.Fragment>

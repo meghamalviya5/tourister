@@ -10,14 +10,10 @@ export const postReducer = (state, action) => {
     case "GET_ALL_USERS":
       return { ...state, users: action.payload };
 
-    // case "UPDATE_CONTENT":
-    //   return { ...state, createPostContent: action.payload };
-
     case "SET_SELECTED_POST_ID":
       return {
         ...state,
         selectedPostForEditDelete: action.payload,
-        // editDeleteShow: action.payload,
       };
 
     case "EDIT_POST":
@@ -26,6 +22,7 @@ export const postReducer = (state, action) => {
     case "DELETE_POST":
       return { ...state, allPosts: action.payload };
 
+    //remove unwanted cases for allPosts update
     case "UPDATE_ALL_POSTS_STATE":
       return { ...state, allPosts: action.payload };
 
