@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { PostContext } from "../../contexts/PostContext";
-import EditPostModal from "../EditPostModal/EditPostModal";
+import EditPostModal from "../Modals/EditPostModal";
 
 const EditDeletePost = ({ selectedPost }) => {
   const { deletePost, state, dispatch } = useContext(PostContext);

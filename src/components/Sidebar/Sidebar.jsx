@@ -14,6 +14,7 @@ const Sidebar = () => {
     state: { loggedInUser },
     signOutHandler,
     getUserBookmarks,
+    getUserById,
   } = useContext(AuthContext);
 
   const { getUserPosts } = useContext(PostContext);
@@ -58,8 +59,10 @@ const Sidebar = () => {
           </div>
           <Link
             to="profile"
-            state={loggedInUser}
-            onClick={() => getUserPosts(loggedInUser?.username)}
+            onClick={() => {
+              getUserPosts(loggedInUser?.username);
+              getUserById(loggedInUser?._id);
+            }}
           >
             <div className="flex flex-space-between flex-align-center">
               <div className="flex">

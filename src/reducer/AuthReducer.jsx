@@ -82,9 +82,11 @@ export const authReducer = (state, action) => {
     case "USER_SIGN_OUT":
       return { ...state, loggedInUser: null };
 
-    case "UPDATE_USER_BOOKMARKS":
+    case "SET_USER_BOOKMARKS":
       return { ...state, loggedInUserBookmarks: action.payload };
 
+    case "UPDATE_SELECTED_USER":
+      return { ...state, selectedUser: action.payload };
     default:
       return { state };
   }

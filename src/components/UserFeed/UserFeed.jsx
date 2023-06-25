@@ -15,9 +15,8 @@ const UserFeed = () => {
       <main className="mt-xl">
         <NewPost />
         <PostHeader />
-        {/* {console.log("State in userfeed inside-- ", state.allPosts)} */}
         {state?.allPosts?.map((post) => (
-          <PostCard post={post} />
+          <PostCard post={post} key={post._id} />
         ))}
       </main>
       <ToastContainer />

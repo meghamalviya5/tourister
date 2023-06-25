@@ -2,20 +2,11 @@ import React, { useContext } from "react";
 import { AuthContext, PostContext } from "../..";
 import PostCard from "../PostCard/PostCard";
 
-const UserPosts = ({ selectedUser }) => {
+const UserPosts = () => {
   const { state } = useContext(PostContext);
-  const {
-    state: { loggedInUserBookmarks },
-  } = useContext(AuthContext);
 
   return (
     <div white-bg>
-      {/* {state?.allPosts
-        ?.filter((post) => post.username === selectedUser.username)
-        .map((post) => (
-          <PostCard post={post} />
-        ))} */}
-
       {state?.userPosts.map((post) => (
         <PostCard post={post} />
       ))}

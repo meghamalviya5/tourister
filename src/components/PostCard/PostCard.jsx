@@ -14,6 +14,7 @@ import {
 import { AuthContext, PostContext } from "../..";
 import EditDeletePost from "../EditDeletePost/EditDeletePost";
 import moment from "moment";
+import Follow from "../FollowUnfollow/Follow";
 
 const PostCard = ({ post }) => {
   const { state, handleEditDeleteShow, dislikePost, likePost, findUser } =
@@ -41,36 +42,37 @@ const PostCard = ({ post }) => {
               <p className="grey-color pl-xs">
                 <span className="pl-xs">•</span>
                 <span className="pl-xs">
-                  {/* {new Date(post.createdAt).getHours() +
-                    " hrs " +
-                    new Date(post.createdAt).getMinutes() +
-                    " min"} */}
                   {moment(new Date(post.createdAt)).fromNow()}
-                  {/* {console.log(post.createdAt, "...time createdAT")} */}
-                  {/* {console.log( */}
-                  {/* // date1.diff(post.createdAT),
-                    // new Date(post.createdAt) +
-                    //   "  " +
-                    //   dayjs(new Date(post.createdAt)) +
-                    //   "  " +
-                //     post.createdAt +
-                //       "---------- " +
-                //       moment(new Date(post.createdAt)).fromNow(),
-                //     "...DAYJS time createdAT"
-                //   )} */}
                 </span>
               </p>
             </div>
-            {authState.loggedInUser.username === post.username ? (
+            {/* {authState.loggedInUser.username === post.username ? (
               <div className="relative">
                 <p className="" onClick={() => handleEditDeleteShow(post._id)}>
                   ∙∙∙
                 </p>
-                {state.selectedPostForEditDelete === post._id ? (
+                {state.selectedPostForEditDelete === post._id &&
+                state.showEditDelete ? (
                   <EditDeletePost selectedPost={post} />
                 ) : null}
               </div>
-            ) : null}
+            ) : (
+              <Follow />
+            )} */}
+            <div className="relative">
+              <p className="" onClick={() => handleEditDeleteShow(post._id)}>
+                ∙∙∙
+              </p>
+              {authState.loggedInUser.username === post.username ? (
+                state.selectedPostForEditDelete === post._id &&
+                state.showEditDelete ? (
+                  <EditDeletePost selectedPost={post} />
+                ) : null
+              ) : state.selectedPostForEditDelete === post._id &&
+                state.showEditDelete ? (
+                <Follow />
+              ) : null}
+            </div>
           </div>
           <p className="pr-s pt-xs">{post.content}</p>
           <div className="flex flex-row nowrap flex-space-between pb-xs pt-m pr-s flex-align-center">

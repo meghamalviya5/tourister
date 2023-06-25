@@ -32,6 +32,7 @@ const AuthProvider = ({ children }) => {
     },
     loggedInUser: null,
     loggedInUserBookmarks: [],
+    selectedUser: {},
     isLoaded: false,
   };
 
@@ -166,11 +167,6 @@ const AuthProvider = ({ children }) => {
         error.response.status === 400 ||
         error.response.status === 404
       ) {
-        // console.log(
-        //   JSON.parse(error.request.responseText),
-        //   "----parsed string"
-        // );
-        // console.log(JSON.parse(error.request.responseText).errors[0], "---[0]");
         const errorText = JSON.parse(error.request.responseText).errors[0];
         toast.error(errorText);
       }
@@ -194,6 +190,10 @@ const AuthProvider = ({ children }) => {
           type: "UPDATE_BOOKMARKS",
           payload: response.data.bookmarks,
         });
+        dispatch({
+          type: "SET_USER_BOOKMARKS",
+          payload: response.data.bookmarks,
+        });
       }
     } catch (error) {
       if (error.response.status === 500) {
@@ -215,7 +215,7 @@ const AuthProvider = ({ children }) => {
       });
       if (response.status === 200) {
         dispatch({
-          type: "UPDATE_USER_BOOKMARKS",
+          type: "SET_USER_BOOKMARKS",
           payload: response.data.bookmarks,
         });
       }
@@ -224,6 +224,19 @@ const AuthProvider = ({ children }) => {
         const errorText = JSON.parse(error.request.responseText).errors[0];
         toast.error(errorText);
       } else if (error.response.status === 500) {
+        toast.error(error.response.statusText);
+      }
+    }
+  };
+
+  const getUserById = async (userId) => {
+    try {
+      const response = await axios.get(`/api/users/${userId}`);
+      if (response.status === 200) {
+        dispatch({ type: "UPDATE_SELECTED_USER", payload: response.data.user });
+      }
+    } catch (error) {
+      if (error.response.status === 500) {
         toast.error(error.response.statusText);
       }
     }
@@ -244,6 +257,7 @@ const AuthProvider = ({ children }) => {
     bookmarkPost,
     removeFromBookmark,
     getUserBookmarks,
+    getUserById,
   };
 
   return (

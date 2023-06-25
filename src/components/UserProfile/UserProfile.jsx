@@ -1,17 +1,14 @@
 import React, { useContext } from "react";
 import { PostContext, AuthContext } from "../..";
 
-const UserProfile = ({ selectedUser }) => {
+const UserProfile = () => {
   const {
-    state: { allPosts },
+    state: { userPosts },
   } = useContext(PostContext);
   const {
-    state: { loggedInUser },
+    state: { loggedInUser, selectedUser },
   } = useContext(AuthContext);
 
-  const postCount = allPosts?.filter(
-    (post) => post.username === selectedUser.username
-  ).length;
   return (
     <div className="flex flex-column flex-center">
       <div className="lynx-gray-bg width-7 height-7 br-full"></div>
@@ -36,7 +33,7 @@ const UserProfile = ({ selectedUser }) => {
           <p className="fw-semibold">Following</p>
         </div>
         <div className="flex flex-column flex-center m-s ml-m mr-m">
-          <p className="fw-black">{postCount}</p>
+          <p className="fw-black">{userPosts?.length}</p>
           <p className="fw-semibold">Posts</p>
         </div>
         <div className="flex flex-column flex-center m-s ml-m mr-m">

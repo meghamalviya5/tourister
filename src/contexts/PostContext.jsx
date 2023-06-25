@@ -16,6 +16,7 @@ const PostProvider = ({ children }) => {
     users: [],
     userPosts: [],
     selectedPostForEditDelete: "",
+    showEditDelete: false,
     editPostModal: false,
   };
 
@@ -162,6 +163,7 @@ const PostProvider = ({ children }) => {
       console.log(error);
     }
   };
+
   const dislikePost = async (post) => {
     try {
       const response = await axios.post(
@@ -202,6 +204,48 @@ const PostProvider = ({ children }) => {
       }
     } catch (error) {
       if (error.response.status === 500) {
+        toast.error(error.response.statusText);
+      }
+    }
+  };
+
+  const followUser = async (followUserId) => {
+    try {
+      const response = await axios.post(`/api/users/follow/${followUserId}`, {
+        headers: { authorization: encodedToken },
+      });
+      if (response.status === 200) {
+        toast.success(
+          "You started Following " + response.data.followUser.username
+        );
+      }
+    } catch (error) {
+      if (error.response.status === 400 || error.response.status === 404) {
+        const errorText = JSON.parse(error.request.responseText).errors[0];
+        toast.error(errorText);
+      } else if (error.response.status === 500) {
+        toast.error(error.response.statusText);
+      }
+    }
+  };
+
+  const unfollowUser = async (followUserId) => {
+    try {
+      const response = await axios.post(
+        `/api/users/unfollow/${followUserId}`,
+        {},
+        {
+          headers: { authorization: encodedToken },
+        }
+      );
+      if (response.status === 200) {
+        toast.success("You unfollowed " + response.data.followUser.username);
+      }
+    } catch (error) {
+      if (error.response.status === 400 || error.response.status === 404) {
+        const errorText = JSON.parse(error.request.responseText).errors[0];
+        toast.error(errorText);
+      } else if (error.response.status === 500) {
         toast.error(error.response.statusText);
       }
     }

@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 const UsersSidebar = () => {
   const {
     state: { loggedInUser },
+    getUserById,
   } = useContext(AuthContext);
 
   const {
@@ -18,9 +19,9 @@ const UsersSidebar = () => {
     getUserPosts,
   } = useContext(PostContext);
 
-  console.log("in user sidebar");
-  console.log("loggedInUser -----", loggedInUser);
-  console.log("users -----", users);
+  // console.log("in user sidebar");
+  // console.log("loggedInUser -----", loggedInUser);
+  // console.log("users -----", users);
 
   const usersToFollow = users.filter(
     (user) => user?.username !== loggedInUser?.username
@@ -44,8 +45,11 @@ const UsersSidebar = () => {
         {usersToFollow.map((user) => (
           <Link
             to="profile"
-            state={user}
-            onClick={() => getUserPosts(user.username)}
+            onClick={() => {
+              getUserPosts(user.username);
+              getUserById(user._id);
+            }}
+            key={user._id}
           >
             <div className="flex p-s flex-space-between flex-align-center">
               <div className="grey-bg br-full width-xl height-xl"></div>

@@ -14,6 +14,7 @@ export const postReducer = (state, action) => {
       return {
         ...state,
         selectedPostForEditDelete: action.payload,
+        showEditDelete: !state.showEditDelete,
       };
 
     case "EDIT_POST":
