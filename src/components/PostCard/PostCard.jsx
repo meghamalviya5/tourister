@@ -13,7 +13,6 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { AuthContext, PostContext } from "../..";
 import EditDeletePost from "../EditDeletePost/EditDeletePost";
-import dayjs from "dayjs";
 import moment from "moment";
 
 const PostCard = ({ post }) => {
@@ -25,17 +24,6 @@ const PostCard = ({ post }) => {
     bookmarkPost,
     removeFromBookmark,
   } = useContext(AuthContext);
-
-  //const date1 = dayjs().format("YYYY-MM-DDTHH:mm:ssZ");
-  //console.log("current date   ==== ", date1);
-  //const date2 = dayjs("2023-06-25T13:00:00.000Z");
-  //   console.log("date diff   ==== ", date1.diff(date2));
-  //   console.log(
-  //     dayjs()
-  //       .format("YYYY-MM-DDTHH:mm:ssZ")
-  //       ,
-  //     "...DAYJS time createdAT"
-  //   );
 
   return (
     <div className="white-bg mr-xxl p-xs mt-s">
@@ -59,17 +47,17 @@ const PostCard = ({ post }) => {
                     " min"} */}
                   {moment(new Date(post.createdAt)).fromNow()}
                   {/* {console.log(post.createdAt, "...time createdAT")} */}
-                  {console.log(
-                    // date1.diff(post.createdAT),
+                  {/* {console.log( */}
+                  {/* // date1.diff(post.createdAT),
                     // new Date(post.createdAt) +
                     //   "  " +
                     //   dayjs(new Date(post.createdAt)) +
                     //   "  " +
-                    post.createdAt +
-                      "---------- " +
-                      moment(new Date(post.createdAt)).fromNow(),
-                    "...DAYJS time createdAT"
-                  )}
+                //     post.createdAt +
+                //       "---------- " +
+                //       moment(new Date(post.createdAt)).fromNow(),
+                //     "...DAYJS time createdAT"
+                //   )} */}
                 </span>
               </p>
             </div>

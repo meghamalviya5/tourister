@@ -10,6 +10,8 @@ import { formatDate, requiresAuth } from "../utils/authUtils";
  * send GET Request at /api/users
  * */
 
+console.log("in UserCOntroller");
+
 export const getAllUsersHandler = function () {
   return new Response(200, {}, { users: this.db.users });
 };

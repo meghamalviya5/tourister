@@ -10,15 +10,12 @@ import PostCard from "../PostCard/PostCard";
 const UserFeed = () => {
   const { state } = useContext(PostContext);
 
-  //console.log(authState.loggedInUser, "---loggedInUser in context");
-  // console.log("State in userfeed -- ", state);
-
   return (
     <div>
       <main className="mt-xl">
         <NewPost />
         <PostHeader />
-        {console.log("State in userfeed inside-- ", state.allPosts)}
+        {/* {console.log("State in userfeed inside-- ", state.allPosts)} */}
         {state?.allPosts?.map((post) => (
           <PostCard post={post} />
         ))}

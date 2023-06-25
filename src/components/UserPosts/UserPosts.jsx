@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext, PostContext } from "../..";
+import PostCard from "../PostCard/PostCard";
 
 const UserPosts = () => {
-  return <div white-bg>third</div>;
+  const { state } = useContext(PostContext);
+  const {
+    state: { loggedInUser },
+  } = useContext(AuthContext);
+
+  return (
+    <div white-bg>
+      {state?.allPosts
+        ?.filter((post) => post.username === loggedInUser.username)
+        .map((post) => (
+          <PostCard post={post} />
+        ))}
+    </div>
+  );
 };
 
 export default UserPosts;

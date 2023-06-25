@@ -1,11 +1,17 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+import { PostContext, AuthContext } from "../..";
 
 const UserProfile = () => {
+  const {
+    state: { allPosts },
+  } = useContext(PostContext);
   const {
     state: { loggedInUser },
   } = useContext(AuthContext);
 
+  const postCount = allPosts?.filter(
+    (post) => post.username === loggedInUser.username
+  ).length;
   return (
     <div className="flex flex-column flex-center">
       <div className="lynx-gray-bg width-7 height-7 br-full"></div>
@@ -14,9 +20,9 @@ const UserProfile = () => {
       <button className="border lynx-white-bg p-xs m-xs fw-semibold width-8">
         Edit Profile
       </button>
-      <p className="m-xs p-xs">About -- yet to add</p>
+      <p className="m-xs p-xs">{loggedInUser.bio}</p>
       <a href="" className="primary-color">
-        website url
+        {loggedInUser.website}
       </a>
       <div className="white-bg p-xs m-xs flex flex-row flex-space-evenly">
         <div className="flex flex-column flex-center m-s ml-m mr-m">
@@ -24,7 +30,7 @@ const UserProfile = () => {
           <p className="fw-semibold">Following</p>
         </div>
         <div className="flex flex-column flex-center m-s ml-m mr-m">
-          <p className="fw-black">1K</p>
+          <p className="fw-black">{postCount}</p>
           <p className="fw-semibold">Posts</p>
         </div>
         <div className="flex flex-column flex-center m-s ml-m mr-m">
