@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import axios from "axios";
 import { authReducer } from "../reducer/AuthReducer";
 import { useNavigate } from "react-router-dom";
@@ -34,10 +34,17 @@ const AuthProvider = ({ children }) => {
     loggedInUserBookmarks: [],
     selectedUser: {},
     isLoaded: false,
+    users: [],
+    followingModalStatus: false,
+    followersModalStatus: false,
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
   // console.log(state.loggedInUser, " ------loggedInUser");
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   console.log("in auth context");
   const signInHandler = async (e) => {
@@ -229,6 +236,96 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const followUser = async (followUserId) => {
+    try {
+      const response = await axios.post(
+        `/api/users/follow/${followUserId}`,
+        {},
+        {
+          headers: { authorization: encodedToken },
+        }
+      );
+      if (response.status === 200) {
+        dispatch({
+          type: "UPDATE_LOGGED_IN_USER_FOLLOWING",
+          payload: response.data.user,
+        });
+        const updatedUsers = state.users.map((user) => {
+          if (user.username === response.data.followUser.username) {
+            return response.data.followUser;
+          }
+          return user;
+        });
+
+        dispatch({
+          type: "UPDATE_FOLLOW_USER_FOLLOWERS",
+          payload: updatedUsers,
+        });
+        toast.success(
+          "You started Following " + response.data.followUser.username
+        );
+      }
+    } catch (error) {
+      if (error.response.status === 400 || error.response.status === 404) {
+        const errorText = JSON.parse(error.request.responseText).errors[0];
+        toast.error(errorText);
+      } else if (error.response.status === 500) {
+        toast.error(error.response.statusText);
+      }
+    }
+  };
+
+  const unfollowUser = async (followUserId) => {
+    try {
+      const response = await axios.post(
+        `/api/users/unfollow/${followUserId}`,
+        {},
+        {
+          headers: { authorization: encodedToken },
+        }
+      );
+      if (response.status === 200) {
+        dispatch({
+          type: "UPDATE_LOGGED_IN_USER_FOLLOWING",
+          payload: response.data.user,
+        });
+        const updatedUsers = state.users.map((user) => {
+          if (user.username === response.data.followUser.username) {
+            return response.data.followUser;
+          }
+          return user;
+        });
+
+        dispatch({
+          type: "UPDATE_FOLLOW_USER_FOLLOWERS",
+          payload: updatedUsers,
+        });
+        toast.success("You unfollowed " + response.data.followUser.username);
+      }
+    } catch (error) {
+      if (error.response.status === 400 || error.response.status === 404) {
+        const errorText = JSON.parse(error.request.responseText).errors[0];
+        toast.error(errorText);
+      } else if (error.response.status === 500) {
+        toast.error(error.response.statusText);
+      }
+    }
+  };
+
+  const getUsers = async () => {
+    try {
+      const response = await axios.get("/api/users");
+
+      if (response.status === 200) {
+        dispatch({ type: "GET_ALL_USERS", payload: response.data.users });
+      }
+    } catch (error) {
+      if (error.response.status === 500) {
+        toast.error("Failed to fetch users!");
+      }
+    }
+  };
+
   const getUserById = async (userId) => {
     try {
       const response = await axios.get(`/api/users/${userId}`);
@@ -258,6 +355,8 @@ const AuthProvider = ({ children }) => {
     removeFromBookmark,
     getUserBookmarks,
     getUserById,
+    followUser,
+    unfollowUser,
   };
 
   return (

@@ -47,7 +47,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "meghamalviya",
-    createdAt: "2023-06-25T11:10:00.000+05:30",
+    createdAt: "2023-06-28T11:10:16.000+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -61,7 +61,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "hbingley1",
-    createdAt: "2023-06-25T23:00:00.000+05:30",
+    createdAt: "2023-06-25T23:23:00.000+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -75,7 +75,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "rshawe2",
-    createdAt: "2023-06-25T03:45:00.000+05:30",
+    createdAt: "2023-06-25T03:45:50.000+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -104,7 +104,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "atuny0",
-    createdAt: "2023-06-25T10:20:00.000+05:30",
+    createdAt: "2023-06-25T10:20:10.000+05:30",
     updatedAt: formatDate(),
   },
 ];

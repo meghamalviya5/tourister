@@ -14,7 +14,7 @@ import {
 import { AuthContext, PostContext } from "../..";
 import EditDeletePost from "../EditDeletePost/EditDeletePost";
 import moment from "moment";
-import Follow from "../FollowUnfollow/Follow";
+import Follow from "../FollowUnfollow/FollowUnfollow";
 
 const PostCard = ({ post }) => {
   const { state, handleEditDeleteShow, dislikePost, likePost, findUser } =
@@ -63,7 +63,7 @@ const PostCard = ({ post }) => {
               <p className="" onClick={() => handleEditDeleteShow(post._id)}>
                 ∙∙∙
               </p>
-              {authState.loggedInUser.username === post.username ? (
+              {/* {authState.loggedInUser.username === post.username ? (
                 state.selectedPostForEditDelete === post._id &&
                 state.showEditDelete ? (
                   <EditDeletePost selectedPost={post} />
@@ -71,6 +71,14 @@ const PostCard = ({ post }) => {
               ) : state.selectedPostForEditDelete === post._id &&
                 state.showEditDelete ? (
                 <Follow />
+              ) : null} */}
+              {state.selectedPostForEditDelete === post._id &&
+              state.showEditDelete ? (
+                authState.loggedInUser.username === post.username ? (
+                  <EditDeletePost selectedPost={post} />
+                ) : (
+                  <Follow selectedPost={post} />
+                )
               ) : null}
             </div>
           </div>

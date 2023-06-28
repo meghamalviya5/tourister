@@ -87,6 +87,28 @@ export const authReducer = (state, action) => {
 
     case "UPDATE_SELECTED_USER":
       return { ...state, selectedUser: action.payload };
+
+    case "UPDATE_LOGGED_IN_USER_FOLLOWING":
+      return {
+        ...state,
+        loggedInUser: action.payload,
+      };
+
+    case "UPDATE_FOLLOW_USER_FOLLOWERS":
+      return {
+        ...state,
+        users: action.payload,
+      };
+
+    case "GET_ALL_USERS":
+      return { ...state, users: action.payload };
+
+    case "SET_FOLLOWING_MODAL_STATUS":
+      return { ...state, followingModalStatus: action.payload };
+
+    case "SET_FOLLOWERS_MODAL_STATUS":
+      return { ...state, followersModalStatus: action.payload };
+
     default:
       return { state };
   }

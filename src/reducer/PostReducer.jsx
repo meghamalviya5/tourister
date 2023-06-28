@@ -7,8 +7,8 @@ export const postReducer = (state, action) => {
     case "GET_ALL_POSTS":
       return { ...state, allPosts: action.payload };
 
-    case "GET_ALL_USERS":
-      return { ...state, users: action.payload };
+    // case "GET_ALL_USERS":
+    //   return { ...state, users: action.payload };
 
     case "SET_SELECTED_POST_ID":
       return {

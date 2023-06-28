@@ -10,12 +10,13 @@ import { Link } from "react-router-dom";
 
 const UsersSidebar = () => {
   const {
-    state: { loggedInUser },
+    state: { loggedInUser, users },
     getUserById,
+    followUser,
   } = useContext(AuthContext);
 
   const {
-    state: { users },
+    // state: { users },
     getUserPosts,
   } = useContext(PostContext);
 
@@ -23,9 +24,21 @@ const UsersSidebar = () => {
   // console.log("loggedInUser -----", loggedInUser);
   // console.log("users -----", users);
 
-  const usersToFollow = users.filter(
-    (user) => user?.username !== loggedInUser?.username
-  );
+  // const usersToFollow = users.filter(
+  //   (user) => user?.username !== loggedInUser?.username
+  // );
+
+  const usersToFollow = users.filter((user) => {
+    if (user._id !== loggedInUser._id) {
+      const findInFollowing = loggedInUser?.following?.find(
+        (fuser) => fuser._id === user._id
+      );
+      if (!findInFollowing) {
+        return true;
+      }
+    }
+    return false;
+  });
 
   return (
     <aside className="mt-xl mr-xxl sidebar2">
@@ -52,17 +65,26 @@ const UsersSidebar = () => {
             key={user._id}
           >
             <div className="flex p-s flex-space-between flex-align-center">
+              {/* <Link
+              to="profile"
+              onClick={() => {
+                getUserPosts(user.username);
+                getUserById(user._id);
+              }}
+              key={user._id}
+            > */}
               <div className="grey-bg br-full width-xl height-xl"></div>
               <div className="flex flex-column">
-                <a href="">
-                  <div className="fw-bold">{`${user?.firstName} ${user?.lastName}`}</div>
-                  <div className="fw-light grey-color">{`@${user?.username}`}</div>
-                </a>
+                {/* <a href=""> */}
+                <div className="fw-bold">{`${user?.firstName} ${user?.lastName}`}</div>
+                <div className="fw-light grey-color">{`@${user?.username}`}</div>
+                {/* </a> */}
               </div>
+              {/* </Link> */}
               <div className="primary-color fw-bold">
-                <a href="">
+                <Link onClick={() => followUser(user._id)}>
                   Follow <FontAwesomeIcon icon={faPlus} />
-                </a>
+                </Link>
               </div>
             </div>
           </Link>

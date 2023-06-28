@@ -1,19 +1,24 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { postReducer } from "../reducer/PostReducer";
 import axios from "axios";
 
 // React Toastify
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "./AuthContext";
 
 export const PostContext = createContext();
 
 const encodedToken = localStorage.getItem("token");
 
 const PostProvider = ({ children }) => {
+  const {
+    state: { users },
+  } = useContext(AuthContext);
+
   const initialState = {
     allPosts: [],
-    users: [],
+    // users: [],
     userPosts: [],
     selectedPostForEditDelete: "",
     showEditDelete: false,
@@ -24,7 +29,7 @@ const PostProvider = ({ children }) => {
   console.log(state, "---state incontext");
   useEffect(() => {
     getAllPosts();
-    getUsers();
+    // getUsers();
   }, []);
 
   const createUserPost = async (postContent) => {
@@ -70,19 +75,19 @@ const PostProvider = ({ children }) => {
     }
   };
 
-  const getUsers = async () => {
-    try {
-      const response = await axios.get("/api/users");
+  // const getUsers = async () => {
+  //   try {
+  //     const response = await axios.get("/api/users");
 
-      if (response.status === 200) {
-        dispatch({ type: "GET_ALL_USERS", payload: response.data.users });
-      }
-    } catch (error) {
-      if (error.response.status === 500) {
-        toast.error("Failed to fetch users!");
-      }
-    }
-  };
+  //     if (response.status === 200) {
+  //       dispatch({ type: "GET_ALL_USERS", payload: response.data.users });
+  //     }
+  //   } catch (error) {
+  //     if (error.response.status === 500) {
+  //       toast.error("Failed to fetch users!");
+  //     }
+  //   }
+  // };
 
   const editUserPost = async (post) => {
     try {
@@ -209,48 +214,6 @@ const PostProvider = ({ children }) => {
     }
   };
 
-  const followUser = async (followUserId) => {
-    try {
-      const response = await axios.post(`/api/users/follow/${followUserId}`, {
-        headers: { authorization: encodedToken },
-      });
-      if (response.status === 200) {
-        toast.success(
-          "You started Following " + response.data.followUser.username
-        );
-      }
-    } catch (error) {
-      if (error.response.status === 400 || error.response.status === 404) {
-        const errorText = JSON.parse(error.request.responseText).errors[0];
-        toast.error(errorText);
-      } else if (error.response.status === 500) {
-        toast.error(error.response.statusText);
-      }
-    }
-  };
-
-  const unfollowUser = async (followUserId) => {
-    try {
-      const response = await axios.post(
-        `/api/users/unfollow/${followUserId}`,
-        {},
-        {
-          headers: { authorization: encodedToken },
-        }
-      );
-      if (response.status === 200) {
-        toast.success("You unfollowed " + response.data.followUser.username);
-      }
-    } catch (error) {
-      if (error.response.status === 400 || error.response.status === 404) {
-        const errorText = JSON.parse(error.request.responseText).errors[0];
-        toast.error(errorText);
-      } else if (error.response.status === 500) {
-        toast.error(error.response.statusText);
-      }
-    }
-  };
-
   const handleEditDeleteShow = (postId) => {
     dispatch({
       type: "SET_SELECTED_POST_ID",
@@ -260,7 +223,7 @@ const PostProvider = ({ children }) => {
 
   const findUser = (userName) => {
     let name = [];
-    const user = state.users.find((user) => user.username === userName);
+    const user = users.find((user) => user.username === userName);
     name[0] = user?.firstName;
     name[1] = user?.lastName;
     return name;

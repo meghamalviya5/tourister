@@ -57,7 +57,8 @@
   background: rgba(0, 0, 0, 0.7);
 }
 
-.container .editModal {
+.container .editModal,
+.following-modal {
   z-index: 1;
   width: 350px;
   height: 220px;
@@ -70,7 +71,36 @@
   animation: animate 0.3s;
 }
 
+.container .following-modal,
+.followers-modal {
+  z-index: 1;
+  width: 25rem;
+  height: 20rem;
+  background: white;
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: center; */
+  border-radius: 5px;
+  position: relative;
+  animation: animate 0.3s;
+}
+
 .editModal .btn-close-post {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  padding: 8px 11px;
+  background: crimson;
+  color: white;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.following-modal,
+.followers-modal .btn-close {
   position: absolute;
   top: 7px;
   right: 7px;
