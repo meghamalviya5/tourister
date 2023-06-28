@@ -109,6 +109,9 @@ export const authReducer = (state, action) => {
     case "SET_FOLLOWERS_MODAL_STATUS":
       return { ...state, followersModalStatus: action.payload };
 
+    case "UPDATE_SEARCHED_USERS":
+      return { ...state, searchedUsers: action.payload };
+
     default:
       return { state };
   }

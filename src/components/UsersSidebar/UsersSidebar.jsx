@@ -7,12 +7,14 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { PostContext } from "../../contexts/PostContext";
 import { Link } from "react-router-dom";
+import SearchSuggestions from "../SearchSuggestions/SearchSuggestions";
 
 const UsersSidebar = () => {
   const {
-    state: { loggedInUser, users },
+    state: { loggedInUser, users, searchedUsers },
     getUserById,
     followUser,
+    searchUsers,
   } = useContext(AuthContext);
 
   const {
@@ -49,8 +51,10 @@ const UsersSidebar = () => {
           name="search-bar"
           className="search-bar border-none outline-transparent p-s width-16"
           placeholder="Search Users"
+          onChange={searchUsers}
         />
       </div>
+      {searchedUsers.length > 0 ? <SearchSuggestions /> : null}
       <div className="white-bg">
         <div className="fw-bold flex flex-row flex-space-between flex-align-center border-bottom p-s">
           <div>Suggested Users</div>

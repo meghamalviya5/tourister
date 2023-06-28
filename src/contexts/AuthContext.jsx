@@ -13,6 +13,7 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
+
   const initialState = {
     signInDetails: {
       username: "",
@@ -37,6 +38,7 @@ const AuthProvider = ({ children }) => {
     users: [],
     followingModalStatus: false,
     followersModalStatus: false,
+    searchedUsers: [],
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
@@ -47,6 +49,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   console.log("in auth context");
+
   const signInHandler = async (e) => {
     e.preventDefault();
     dispatch({ type: "SET_LOADER" });
@@ -345,6 +348,16 @@ const AuthProvider = ({ children }) => {
     toast.success("Signed Out Successfully!");
   };
 
+  const searchUsers = (e) => {
+    const foundUsers = state.users.filter(
+      (user) =>
+        user.username.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        user.firstName.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        user.lastName.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    dispatch({ type: "UPDATE_SEARCHED_USERS", payload: foundUsers });
+  };
+
   const valueProp = {
     state,
     dispatch,
@@ -357,6 +370,7 @@ const AuthProvider = ({ children }) => {
     getUserById,
     followUser,
     unfollowUser,
+    searchUsers,
   };
 
   return (
