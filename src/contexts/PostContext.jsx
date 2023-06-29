@@ -18,11 +18,13 @@ const PostProvider = ({ children }) => {
 
   const initialState = {
     allPosts: [],
+    filteredPosts: [],
     // users: [],
     userPosts: [],
     selectedPostForEditDelete: "",
     showEditDelete: false,
     editPostModal: false,
+    filterModalStatus: false,
   };
 
   const [state, dispatch] = useReducer(postReducer, initialState);
@@ -229,6 +231,10 @@ const PostProvider = ({ children }) => {
     return name;
   };
 
+  const sortByTrending = () => {};
+  const sortByLatest = () => {};
+  const sortByOldest = () => {};
+
   const valueProp = {
     state,
     dispatch,
@@ -240,6 +246,9 @@ const PostProvider = ({ children }) => {
     getUserPosts,
     handleEditDeleteShow,
     findUser,
+    sortByTrending,
+    sortByLatest,
+    sortByOldest,
   };
 
   return (

@@ -6,7 +6,8 @@ import NewPost from "../NewPost/NewPost";
 const EditPostModal = ({ selectedPost }) => {
   const { dispatch } = useContext(PostContext);
   const editModalRef = useRef();
-  console.log("selectedPOst--- ", selectedPost);
+  // console.log("selectedPOst--- ", selectedPost);
+
   const closeEditModal = (e) => {
     if (e.target === editModalRef.current) {
       dispatch({ type: "SET_EDIT_MODAL_STATUS", payload: false });

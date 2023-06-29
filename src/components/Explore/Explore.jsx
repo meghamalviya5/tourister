@@ -13,7 +13,7 @@ const Explore = () => {
         <h3>Explore</h3>
       </div>
       {allPosts.map((post) => (
-        <PostCard post={post} />
+        <PostCard post={post} key={post._id} />
       ))}
     </div>
   );

@@ -12,9 +12,9 @@ const Navbar = () => {
 
   return (
     <div>
-      <a href="/">
+      <Link href="/">
         <span>Tourister</span>
-      </a>
+      </Link>
 
       {/* <div className="pt-s black-color fw-semibold">
         <Link to="/landing-page" onClick={signOutHandler}>
