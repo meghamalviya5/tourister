@@ -25,13 +25,14 @@ const PostProvider = ({ children }) => {
     showEditDelete: false,
     editPostModal: false,
     filterModalStatus: false,
+    filters: { sortBy: "" },
   };
 
   const [state, dispatch] = useReducer(postReducer, initialState);
-  console.log(state, "---state incontext");
+  console.log("in PostContext");
+
   useEffect(() => {
     getAllPosts();
-    // getUsers();
   }, []);
 
   const createUserPost = async (postContent) => {
@@ -76,20 +77,6 @@ const PostProvider = ({ children }) => {
       }
     }
   };
-
-  // const getUsers = async () => {
-  //   try {
-  //     const response = await axios.get("/api/users");
-
-  //     if (response.status === 200) {
-  //       dispatch({ type: "GET_ALL_USERS", payload: response.data.users });
-  //     }
-  //   } catch (error) {
-  //     if (error.response.status === 500) {
-  //       toast.error("Failed to fetch users!");
-  //     }
-  //   }
-  // };
 
   const editUserPost = async (post) => {
     try {
@@ -231,9 +218,31 @@ const PostProvider = ({ children }) => {
     return name;
   };
 
-  const sortByTrending = () => {};
-  const sortByLatest = () => {};
-  const sortByOldest = () => {};
+  const sortByTrending = () => {
+    dispatch({ type: "UPDATE_FILTERS", payload: "sortByTrending" });
+  };
+  const sortByLatest = () => {
+    dispatch({ type: "UPDATE_FILTERS", payload: "sortByLatest" });
+  };
+  const sortByOldest = () => {
+    dispatch({ type: "UPDATE_FILTERS", payload: "sortByOldest" });
+  };
+
+  if (state.filters.sortBy.length > 0) {
+    if (state.filters.sortBy === "sortByTrending") {
+      state.filteredPosts = state.filteredPosts.sort(
+        (a, b) => b.likes.likeCount - a.likes.likeCount
+      );
+    } else if (state.filters.sortBy === "sortByLatest") {
+      state.filteredPosts = state.filteredPosts.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+    } else if (state.filters.sortBy === "sortByOldest") {
+      state.filteredPosts = state.filteredPosts.sort(
+        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+      );
+    }
+  }
 
   const valueProp = {
     state,

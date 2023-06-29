@@ -1,4 +1,5 @@
 import React, { useContext, useRef } from "react";
+import ReactDom from "react-dom";
 import { PostContext } from "../../contexts/PostContext";
 import "./Filters.css";
 
@@ -12,9 +13,9 @@ const Filters = () => {
       dispatch({ type: "SET_FILTER_MODAL_STATUS", payload: false });
     }
   };
-  return (
+  return ReactDom.createPortal(
     <div
-      className="absolute search-result filter-container"
+      className="absolute filter-container"
       ref={filtersRef}
       onClick={closeFilters}
     >
@@ -23,7 +24,8 @@ const Filters = () => {
         <button onClick={sortByLatest}>Latest</button>
         <button onClick={sortByOldest}>Oldest</button>
       </div>
-    </div>
+    </div>,
+    document.getElementById("portal")
   );
 };
 

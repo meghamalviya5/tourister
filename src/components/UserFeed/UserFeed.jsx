@@ -42,7 +42,7 @@ const UserFeed = () => {
       "in useEffect userfeed  === " + loggedInUser.following.toString()
     );
     userFeedPosts();
-  }, [loggedInUser.following]);
+  }, [loggedInUser.following, state.allPosts]);
 
   return (
     <div>

@@ -39,6 +39,11 @@ export const postReducer = (state, action) => {
     case "UPDATE_FILTERED_POSTS":
       return { ...state, filteredPosts: action.payload };
 
+    case "UPDATE_FILTERS":
+      return {
+        ...state,
+        filters: { ...state.filters, sortBy: action.payload },
+      };
     default:
       return { state };
   }

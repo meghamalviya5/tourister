@@ -18,6 +18,7 @@ const PostHeader = () => {
           dispatch({ type: "SET_FILTER_MODAL_STATUS", payload: true })
         }
       ></i>
+
       {/* <FontAwesomeIcon icon={faSliders} /> */}
       {filterModalStatus ? <Filters /> : null}
     </div>
