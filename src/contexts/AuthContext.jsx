@@ -31,6 +31,14 @@ const AuthProvider = ({ children }) => {
       isLoaded: false,
       error: "",
     },
+    editProfileDetails: {
+      avatar: "",
+      firstName: "",
+      lastName: "",
+      username: "",
+      bio: "",
+      website: "",
+    },
     loggedInUser: null,
     loggedInUserBookmarks: [],
     selectedUser: {},
@@ -39,6 +47,7 @@ const AuthProvider = ({ children }) => {
     followingModalStatus: false,
     followersModalStatus: false,
     searchedUsers: [],
+    editProfileModal: false,
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
@@ -46,7 +55,8 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     getUsers();
-  }, []);
+    populateEditProfileDetails();
+  }, [state.loggedInUser]);
 
   console.log("in auth context");
 
@@ -358,6 +368,62 @@ const AuthProvider = ({ children }) => {
     dispatch({ type: "UPDATE_SEARCHED_USERS", payload: foundUsers });
   };
 
+  const populateEditProfileDetails = () => {
+    console.log("in populate profile details");
+    const profileDetails = {
+      avatar: state?.loggedInUser?.avatar,
+      firstName: state?.loggedInUser?.firstName,
+      lastName: state?.loggedInUser?.lastName,
+      username: state?.loggedInUser?.username,
+      bio: state?.loggedInUser?.bio,
+      website: state?.loggedInUser?.website,
+    };
+    dispatch({ type: "SET_EDIT_PROFILE_DETAILS", payload: profileDetails });
+  };
+
+  const handleEditProfileChange = (e, fieldName) => {
+    const saveDetail = {
+      ...state.editProfileDetails,
+      [fieldName]: e.target.value,
+    };
+    dispatch({ type: "SET_EDIT_PROFILE_DETAILS", payload: saveDetail });
+  };
+
+  const onEditProfileSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "/api/users/edit",
+        {
+          userData: {
+            username: state?.editProfileDetails?.username,
+            bio: state?.editProfileDetails?.bio,
+            website: state?.editProfileDetails?.website,
+          },
+        },
+        { headers: { authorization: encodedToken } }
+      );
+      if (response.status === 201) {
+        toast.success("User Profile Updated Successfully!");
+        dispatch({
+          type: "UPDATE_LOGGED_IN_USER",
+          payload: response.data.user,
+        });
+        dispatch({
+          type: "SET_EDIT_PROFILE_MODAL_STATUS",
+          payload: false,
+        });
+      }
+    } catch (error) {
+      if (error.response.status === 400 || error.response.status === 404) {
+        const errorText = JSON.parse(error.request.responseText).errors[0];
+        toast.error(errorText);
+      } else if (error.response.status === 500) {
+        toast.error(error.response.statusText);
+      }
+    }
+  };
+
   const valueProp = {
     state,
     dispatch,
@@ -371,6 +437,9 @@ const AuthProvider = ({ children }) => {
     followUser,
     unfollowUser,
     searchUsers,
+    onEditProfileSubmit,
+    handleEditProfileChange,
+    getUsers,
   };
 
   return (

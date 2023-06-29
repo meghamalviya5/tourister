@@ -26,18 +26,23 @@ const PostCard = ({ post }) => {
     removeFromBookmark,
   } = useContext(AuthContext);
 
+  const user = authState.users.find((user) => user.username === post.username);
+
   return (
     <div className="white-bg mr-xxl p-xs mt-s">
       <div className="flex flex-row nowrap p-xs">
         <div
-          className="grey-bg br-full width-xl height-xl p-xs mr-xs"
+          className="grey-bg br-full width-xl height-xl mr-xs"
           style={{ aspectRatio: 1 }}
-        ></div>
+        >
+          <img src={`${user?.avatar}`} alt="tourist" className="br-full" />
+        </div>
         <div>
           <div className="flex flex-row flex-align-center flex-space-between">
             <div className="flex flex-row">
               <p className="fw-semibold">
-                {findUser(post.username).map((name) => name + " ")}
+                {/* {findUser(post.username).map((name) => name + " ")} */}
+                {`${user?.firstName} ${user?.lastName}`}
               </p>
               <p className="grey-color pl-xs">
                 <span className="pl-xs">•</span>

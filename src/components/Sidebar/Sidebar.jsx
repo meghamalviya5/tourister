@@ -66,7 +66,13 @@ const Sidebar = () => {
           >
             <div className="flex flex-space-between flex-align-center">
               <div className="flex">
-                <div className="grey-bg br-full width-xl height-xl"></div>
+                <div className="grey-bg br-full width-xl height-xl">
+                  <img
+                    src={`${loggedInUser?.avatar}`}
+                    alt="tourist"
+                    className="br-full"
+                  />
+                </div>
                 <div className="flex flex-column ml-xs">
                   <div className="fw-bold">{`${loggedInUser?.firstName} ${loggedInUser?.lastName}`}</div>
                   <div className="fw-light grey-color">{`@${loggedInUser?.username}`}</div>

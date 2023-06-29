@@ -498,6 +498,11 @@ h6 {
   position: absolute;
 }
 
+/* opacity */
+.opacity-0 {
+  opacity: 0;
+}
+
 @media only screen and (max-width: 650px) {
   h1 {
     font-size: var(--l-size);

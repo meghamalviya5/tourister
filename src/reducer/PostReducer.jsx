@@ -44,6 +44,7 @@ export const postReducer = (state, action) => {
         ...state,
         filters: { ...state.filters, sortBy: action.payload },
       };
+
     default:
       return { state };
   }

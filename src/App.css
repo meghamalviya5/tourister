@@ -71,7 +71,8 @@
 }
 
 .container .editModal,
-.following-modal {
+.following-modal,
+.edit-profile-modal {
   z-index: 1;
   width: 350px;
   height: 220px;

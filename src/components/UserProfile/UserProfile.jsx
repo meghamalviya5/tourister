@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { PostContext, AuthContext } from "../..";
 import FollowingModal from "../Modals/FollowingModal";
 import "./UserProfile.css";
 import FollowersModal from "../Modals/FollowersModal";
+import EditProfileModal from "../Modals/EditProfileModal";
 
 const UserProfile = () => {
   const {
@@ -14,23 +15,46 @@ const UserProfile = () => {
       selectedUser,
       followingModalStatus,
       followersModalStatus,
+      editProfileModal,
     },
     dispatch,
     followUser,
     unfollowUser,
+    getUsers,
   } = useContext(AuthContext);
 
   const checkUserInFollowing = loggedInUser.following.find(
     (user) => user._id === selectedUser._id
   );
 
+  useEffect(() => {
+    console.log("in get users call useEffect");
+    getUsers();
+  }, [loggedInUser]);
+
+  console.log("hihi in userprofile");
+
   return (
     <div className="flex flex-column flex-center">
-      <div className="lynx-gray-bg width-7 height-7 br-full"></div>
+      <div className="lynx-gray-bg width-7 height-7 br-full">
+        <img
+          src={`${selectedUser?.avatar}`}
+          alt="tourist"
+          className="br-full"
+        />
+      </div>
       <h3 className="pt-s">{`${selectedUser?.firstName} ${selectedUser?.lastName}`}</h3>
       <p className="grey-color txt-s">{`@${selectedUser?.username}`}</p>
       {loggedInUser.username === selectedUser.username ? (
-        <button className="border lynx-white-bg p-xs m-xs fw-semibold width-8">
+        <button
+          className="border lynx-white-bg p-xs m-xs fw-semibold width-8"
+          onClick={() =>
+            dispatch({
+              type: "SET_EDIT_PROFILE_MODAL_STATUS",
+              payload: true,
+            })
+          }
+        >
           Edit Profile
         </button>
       ) : checkUserInFollowing ? (
@@ -48,6 +72,8 @@ const UserProfile = () => {
           Follow
         </button>
       )}
+      {editProfileModal ? <EditProfileModal /> : null}
+
       <p className="m-xs p-xs">{selectedUser.bio}</p>
       <a href={selectedUser.website} className="primary-color">
         {selectedUser.website}

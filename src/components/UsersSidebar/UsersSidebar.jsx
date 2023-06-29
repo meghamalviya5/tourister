@@ -77,7 +77,13 @@ const UsersSidebar = () => {
               }}
               key={user._id}
             > */}
-              <div className="grey-bg br-full width-xl height-xl"></div>
+              <div className="grey-bg br-full width-xl height-xl">
+                <img
+                  src={`${user?.avatar}`}
+                  alt="tourist"
+                  className="br-full"
+                />
+              </div>
               <div className="flex flex-column">
                 {/* <a href=""> */}
                 <div className="fw-bold">{`${user?.firstName} ${user?.lastName}`}</div>

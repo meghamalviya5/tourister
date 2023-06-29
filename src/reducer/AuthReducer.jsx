@@ -112,6 +112,16 @@ export const authReducer = (state, action) => {
     case "UPDATE_SEARCHED_USERS":
       return { ...state, searchedUsers: action.payload };
 
+    case "SET_EDIT_PROFILE_MODAL_STATUS":
+      return { ...state, editProfileModal: action.payload };
+
+    case "SET_EDIT_PROFILE_DETAILS":
+      return {
+        ...state,
+        editProfileDetails: action.payload,
+        selectedUser: action.payload,
+      };
+
     default:
       return { state };
   }
