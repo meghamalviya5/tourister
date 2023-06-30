@@ -11,6 +11,8 @@ import Bookmarks from "./components/Booksmarks/Bookmarks";
 import Profile from "./components/Profile/Profile";
 import Layout from "./components/Layout/Layout";
 import RequiresAuth from "./components/RequiresAuth";
+import PostDetails from "./components/PostDetails/PostDetails";
+import PostCard from "./components/PostCard/PostCard";
 
 function App() {
   return (
@@ -29,13 +31,35 @@ function App() {
               </RequiresAuth>
             }
           />
-          <Route path="explore" element={<Explore />} />
-          <Route path="bookmarks" element={<Bookmarks />} />
+          <Route
+            path="explore"
+            element={
+              <RequiresAuth>
+                <Explore />
+              </RequiresAuth>
+            }
+          />
+          <Route
+            path="bookmarks"
+            element={
+              <RequiresAuth>
+                <Bookmarks />
+              </RequiresAuth>
+            }
+          />
           <Route
             path="profile"
             element={
               <RequiresAuth>
                 <Profile />
+              </RequiresAuth>
+            }
+          />
+          <Route
+            path="post-details/:postId"
+            element={
+              <RequiresAuth>
+                <PostCard />
               </RequiresAuth>
             }
           />

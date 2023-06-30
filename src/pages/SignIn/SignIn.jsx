@@ -29,25 +29,27 @@ const SignIn = () => {
           />
         </div>
         <div>
-          <label id="password">Password</label>
-          <input
-            id="password"
-            type={state.signInDetails.showPassword ? "text" : "password"}
-            placeholder="Enter Password"
-            value={state.signInDetails.password}
-            onChange={(e) =>
-              dispatch({
-                type: "UPDATE_SIGN_IN_DETAILS",
-                payload: { key: "password", value: e.target.value },
-              })
-            }
-          />
-          <i
-            onClick={() => dispatch({ type: "SIGN_IN_SHOW_HIDE_PASSWORD" })}
-            className={`fa ${
-              state.signInDetails.showPassword ? "fa-eye" : "fa-eye-slash"
-            } `}
-          ></i>
+          <label id="password" className="relative">
+            Password
+            <input
+              id="password"
+              type={state.signInDetails.showPassword ? "text" : "password"}
+              placeholder="Enter Password"
+              value={state.signInDetails.password}
+              onChange={(e) =>
+                dispatch({
+                  type: "UPDATE_SIGN_IN_DETAILS",
+                  payload: { key: "password", value: e.target.value },
+                })
+              }
+            />
+            <i
+              onClick={() => dispatch({ type: "SIGN_IN_SHOW_HIDE_PASSWORD" })}
+              className={`fa ${
+                state.signInDetails.showPassword ? "fa-eye" : "fa-eye-slash"
+              } `}
+            ></i>
+          </label>
         </div>
         <button type="submit" name="signIn">
           Sign in

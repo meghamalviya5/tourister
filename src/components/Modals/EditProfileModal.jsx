@@ -36,6 +36,8 @@ const EditProfileModal = () => {
         <form method="post" onSubmit={onEditProfileSubmit}>
           <div>Edit Profile</div>
           <div className="flex ">
+            <div>Select Avatar</div>
+
             <label htmlFor="avatar">Avatar</label>
             <div className="relative">
               <img

@@ -19,9 +19,13 @@ const Bookmarks = () => {
       <div className="flex flex-space-between mr-xxl flex-align-center pt-s">
         <h3>Booksmarks</h3>
       </div>
-      {bookmarkedPosts.map((bookmarkedPost) => (
-        <PostCard post={bookmarkedPost} />
-      ))}
+      {bookmarkedPosts.length > 0 ? (
+        bookmarkedPosts.map((bookmarkedPost) => (
+          <PostCard post={bookmarkedPost} />
+        ))
+      ) : (
+        <div>No bookmarks yet!</div>
+      )}
     </div>
   );
 };

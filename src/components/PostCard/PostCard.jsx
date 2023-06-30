@@ -15,8 +15,10 @@ import { AuthContext, PostContext } from "../..";
 import EditDeletePost from "../EditDeletePost/EditDeletePost";
 import moment from "moment";
 import Follow from "../FollowUnfollow/FollowUnfollow";
+import { Link, useParams } from "react-router-dom";
 
 const PostCard = ({ post }) => {
+  const { postId } = useParams();
   const { state, handleEditDeleteShow, dislikePost, likePost, findUser } =
     useContext(PostContext);
 
@@ -26,6 +28,8 @@ const PostCard = ({ post }) => {
     removeFromBookmark,
   } = useContext(AuthContext);
 
+  console.log("postId : ", postId);
+  post = postId ? state.allPosts.find((post) => post._id === postId) : post;
   const user = authState.users.find((user) => user.username === post.username);
 
   return (
@@ -87,7 +91,9 @@ const PostCard = ({ post }) => {
               ) : null}
             </div>
           </div>
-          <p className="pr-s pt-xs">{post.content}</p>
+          <Link to={`/post-details/${post._id}`}>
+            <p className="pr-s pt-xs">{post.content}</p>
+          </Link>
           <div className="flex flex-row nowrap flex-space-between pb-xs pt-m pr-s flex-align-center">
             {post.likes.likedBy.find(
               (user) => user.username === authState.loggedInUser.username
