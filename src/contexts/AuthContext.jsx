@@ -396,6 +396,7 @@ const AuthProvider = ({ children }) => {
         "/api/users/edit",
         {
           userData: {
+            avatar: state?.editProfileDetails?.avatar,
             username: state?.editProfileDetails?.username,
             bio: state?.editProfileDetails?.bio,
             website: state?.editProfileDetails?.website,

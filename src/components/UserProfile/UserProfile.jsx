@@ -3,7 +3,7 @@ import { PostContext, AuthContext } from "../..";
 import FollowingModal from "../Modals/FollowingModal";
 import "./UserProfile.css";
 import FollowersModal from "../Modals/FollowersModal";
-import EditProfileModal from "../Modals/EditProfileModal";
+import EditProfileModal from "../Modals/EditProfileModal/EditProfileModal";
 
 const UserProfile = () => {
   const {
