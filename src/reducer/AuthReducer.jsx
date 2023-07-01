@@ -92,6 +92,7 @@ export const authReducer = (state, action) => {
       return {
         ...state,
         loggedInUser: action.payload,
+        selectedUser: action.payload,
       };
 
     case "UPDATE_FOLLOW_USER_FOLLOWERS":
@@ -119,7 +120,7 @@ export const authReducer = (state, action) => {
       return {
         ...state,
         editProfileDetails: action.payload,
-        selectedUser: action.payload,
+        selectedUser: { ...state.selectedUser, ...action.payload },
       };
 
     default:

@@ -60,24 +60,25 @@ const UsersSidebar = () => {
           <div>Suggested Users</div>
         </div>
         {usersToFollow.map((user) => (
-          <Link
-            to="profile"
-            onClick={() => {
-              getUserPosts(user.username);
-              getUserById(user._id);
-            }}
-            key={user._id}
-          >
-            <div className="flex p-s flex-space-between flex-align-center">
-              {/* <Link
+          // <Link
+          //   to="profile"
+          //   onClick={() => {
+          //     getUserPosts(user.username);
+          //     getUserById(user._id);
+          //   }}
+          //   key={user._id}
+          // >
+          <div className="flex p-s flex-space-between flex-align-center">
+            <Link
               to="profile"
+              className="flex"
               onClick={() => {
                 getUserPosts(user.username);
                 getUserById(user._id);
               }}
               key={user._id}
-            > */}
-              <div className="grey-bg br-full width-xl height-xl">
+            >
+              <div className="grey-bg br-full width-xl height-xl mr-s">
                 <img
                   src={`${user?.avatar}`}
                   alt="tourist"
@@ -90,14 +91,14 @@ const UsersSidebar = () => {
                 <div className="fw-light grey-color">{`@${user?.username}`}</div>
                 {/* </a> */}
               </div>
-              {/* </Link> */}
-              <div className="primary-color fw-bold">
-                <Link onClick={() => followUser(user._id)}>
-                  Follow <FontAwesomeIcon icon={faPlus} />
-                </Link>
-              </div>
+            </Link>
+            <div className="primary-color fw-bold">
+              <Link onClick={() => followUser(user._id)}>
+                Follow <FontAwesomeIcon icon={faPlus} />
+              </Link>
             </div>
-          </Link>
+          </div>
+          // </Link>
         ))}
       </div>
     </aside>

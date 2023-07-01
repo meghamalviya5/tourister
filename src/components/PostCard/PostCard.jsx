@@ -45,7 +45,6 @@ const PostCard = ({ post }) => {
           <div className="flex flex-row flex-align-center flex-space-between">
             <div className="flex flex-row">
               <p className="fw-semibold">
-                {/* {findUser(post.username).map((name) => name + " ")} */}
                 {`${user?.firstName} ${user?.lastName}`}
               </p>
               <p className="grey-color pl-xs">
@@ -55,32 +54,12 @@ const PostCard = ({ post }) => {
                 </span>
               </p>
             </div>
-            {/* {authState.loggedInUser.username === post.username ? (
-              <div className="relative">
-                <p className="" onClick={() => handleEditDeleteShow(post._id)}>
-                  ∙∙∙
-                </p>
-                {state.selectedPostForEditDelete === post._id &&
-                state.showEditDelete ? (
-                  <EditDeletePost selectedPost={post} />
-                ) : null}
-              </div>
-            ) : (
-              <Follow />
-            )} */}
+
             <div className="relative">
               <p className="" onClick={() => handleEditDeleteShow(post._id)}>
                 ∙∙∙
               </p>
-              {/* {authState.loggedInUser.username === post.username ? (
-                state.selectedPostForEditDelete === post._id &&
-                state.showEditDelete ? (
-                  <EditDeletePost selectedPost={post} />
-                ) : null
-              ) : state.selectedPostForEditDelete === post._id &&
-                state.showEditDelete ? (
-                <Follow />
-              ) : null} */}
+
               {state.selectedPostForEditDelete === post._id &&
               state.showEditDelete ? (
                 authState.loggedInUser.username === post.username ? (
