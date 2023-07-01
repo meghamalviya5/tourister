@@ -8,6 +8,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { PostContext } from "../../contexts/PostContext";
+import CreatePostModal from "../Modals/CreatePostModal/CreatePostModal";
 
 const Sidebar = () => {
   const {
@@ -17,7 +18,11 @@ const Sidebar = () => {
     getUserById,
   } = useContext(AuthContext);
 
-  const { getUserPosts } = useContext(PostContext);
+  const {
+    state: { createPostModalStatus },
+    dispatch,
+    getUserPosts,
+  } = useContext(PostContext);
 
   return (
     <React.Fragment>
@@ -53,9 +58,18 @@ const Sidebar = () => {
               </Link>
             </div>
 
-            <button className="mt-m p-s primary-bg white-color border-none outline-transparent new-post-btn">
+            <button
+              className="mt-m p-s primary-bg white-color border-none outline-transparent new-post-btn"
+              onClick={() =>
+                dispatch({
+                  type: "SET_CREATE_POST_MODAL_STATUS",
+                  payload: true,
+                })
+              }
+            >
               Create POST
             </button>
+            {createPostModalStatus ? <CreatePostModal /> : null}
           </div>
           <Link
             to="profile"

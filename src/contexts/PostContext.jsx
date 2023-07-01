@@ -25,6 +25,7 @@ const PostProvider = ({ children }) => {
     showEditDelete: false,
     editPostModal: false,
     filterModalStatus: false,
+    createPostModalStatus: false,
     filters: { sortBy: "" },
   };
 
@@ -56,6 +57,9 @@ const PostProvider = ({ children }) => {
         //   type: "UPDATE_CONTENT",
         //   payload: "",
         // });
+        if (state.createPostModalStatus) {
+          dispatch({ type: "SET_CREATE_POST_MODAL_STATUS", payload: false });
+        }
       }
     } catch (error) {
       if (error.response.status === 500) {

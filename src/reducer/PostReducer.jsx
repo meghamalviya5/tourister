@@ -45,6 +45,9 @@ export const postReducer = (state, action) => {
         filters: { ...state.filters, sortBy: action.payload },
       };
 
+    case "SET_CREATE_POST_MODAL_STATUS":
+      return { ...state, createPostModalStatus: action.payload };
+
     default:
       return { state };
   }
