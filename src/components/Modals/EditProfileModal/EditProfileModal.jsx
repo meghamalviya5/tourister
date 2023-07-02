@@ -3,12 +3,12 @@ import ReactDom from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
-import girl from "../../../assets/girl.png";
-import woman from "../../../assets/woman.png";
-import womanCam from "../../../assets/woman-cam.png";
-import travellerMap from "../../../assets/traveller-map.png";
-import adventurer from "../../../assets/adventurer.png";
-import traveller from "../../../assets/traveller.png";
+// import girl from "../../../assets/girl.png";
+// import woman from "../../../assets/woman.png";
+// import womanCam from "../../../assets/woman-cam.png";
+// import travellerMap from "../../../assets/traveller-map.png";
+// import adventurer from "../../../assets/adventurer.png";
+// import traveller from "../../../assets/traveller.png";
 
 import { AuthContext } from "../../../contexts/AuthContext";
 import "../Modal.css";
@@ -20,13 +20,14 @@ const EditProfileModal = () => {
     state: { editProfileDetails },
     onEditProfileSubmit,
     handleEditProfileChange,
+    avatars,
   } = useContext(AuthContext);
 
   const editProfileModalRef = useRef();
   const { avatar, firstName, lastName, username, bio, website } =
     editProfileDetails;
 
-  const avatars = [girl, woman, womanCam, travellerMap, adventurer, traveller];
+  // const avatars = [girl, woman, womanCam, travellerMap, adventurer, traveller];
 
   const closeEditProfileModal = (e) => {
     if (e.target === editProfileModalRef.current) {

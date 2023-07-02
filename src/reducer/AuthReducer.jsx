@@ -26,7 +26,6 @@ export const authReducer = (state, action) => {
       };
 
     case "UPDATE_SIGN_UP_DETAILS":
-      // console.log(action.payload, "in authreducer");
       return {
         ...state,
         signUpDetails: {
@@ -36,6 +35,10 @@ export const authReducer = (state, action) => {
       };
 
     case "SIGN_UP_SHOW_HIDE_PASSWORD":
+      console.log(
+        action.payload,
+        "PAYLOAD in authreducer --- + ! " + !action.payload.value
+      );
       return {
         ...state,
         signUpDetails: {
@@ -63,7 +66,8 @@ export const authReducer = (state, action) => {
           password: "",
           confirmPassword: "",
           email: "",
-          fullName: "",
+          firstName: "",
+          lastName: "",
         },
       };
 
@@ -80,7 +84,7 @@ export const authReducer = (state, action) => {
       };
 
     case "USER_SIGN_OUT":
-      return { ...state, loggedInUser: null };
+      return { ...state, loggedInUser: null, selectedUser: null };
 
     case "SET_USER_BOOKMARKS":
       return { ...state, loggedInUserBookmarks: action.payload };
@@ -92,7 +96,7 @@ export const authReducer = (state, action) => {
       return {
         ...state,
         loggedInUser: action.payload,
-        selectedUser: action.payload,
+        //selectedUser: action.payload,
       };
 
     case "UPDATE_FOLLOW_USER_FOLLOWERS":
@@ -103,6 +107,9 @@ export const authReducer = (state, action) => {
 
     case "GET_ALL_USERS":
       return { ...state, users: action.payload };
+
+    case "ADD_NEW_USER":
+      return { ...state, users: [...state.users, action.payload] };
 
     case "SET_FOLLOWING_MODAL_STATUS":
       return { ...state, followingModalStatus: action.payload };

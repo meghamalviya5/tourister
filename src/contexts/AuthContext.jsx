@@ -7,6 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import girl from "../assets/girl.png";
+import woman from "../assets/woman.png";
+import womanCam from "../assets/woman-cam.png";
+import travellerMap from "../assets/traveller-map.png";
+import adventurer from "../assets/adventurer.png";
+import traveller from "../assets/traveller.png";
+
 const encodedToken = localStorage.getItem("token");
 
 export const AuthContext = createContext();
@@ -25,9 +32,13 @@ const AuthProvider = ({ children }) => {
     signUpDetails: {
       username: "",
       password: "",
+      showPassword: false,
       confirmPassword: "",
+      showConfirmPassword: false,
       email: "",
-      fullName: "",
+      // fullName: "",
+      firstName: "",
+      lastName: "",
       isLoaded: false,
       error: "",
     },
@@ -50,8 +61,11 @@ const AuthProvider = ({ children }) => {
     editProfileModal: false,
   };
 
+  const avatars = [girl, woman, womanCam, travellerMap, adventurer, traveller];
+
   const [state, dispatch] = useReducer(authReducer, initialState);
-  // console.log(state.loggedInUser, " ------loggedInUser");
+  //console.log(state.loggedInUser, " ------loggedInUser");
+  console.log(state.users, " ------users");
 
   useEffect(() => {
     getUsers();
@@ -137,21 +151,30 @@ const AuthProvider = ({ children }) => {
         });
         dispatch({
           type: "UPDATE_SIGN_UP_DETAILS",
-          payload: { key: "fullName", value: "Jade Johnson" },
+          payload: { key: "firstName", value: "Jade Johnson" },
         });
-        // console.log("state:: ", state);
+        dispatch({
+          type: "UPDATE_SIGN_UP_DETAILS",
+          payload: { key: "lastName", value: "Johnson" },
+        });
       } else {
         response = await axios.post("/api/auth/signup", {
+          avatar: avatars[Math.floor(Math.random() * avatars.length)],
           username: state.signUpDetails.username,
           password: state.signUpDetails.password,
           confirmPassword: state.signUpDetails.confirmPassword,
           email: state.signUpDetails.email,
-          fullName: state.signUpDetails.fullName,
+          firstName: state.signUpDetails.firstName,
+          lastName: state.signUpDetails.lastName,
         });
         if (response?.status === 201) {
           localStorage.setItem("token", response.data.encodedToken);
           toast.success("Signed Up Successfully!");
           dispatch({ type: "RESET_SIGN_UP" });
+          dispatch({
+            type: "ADD_NEW_USER",
+            payload: response.data.createdUser,
+          });
           navigate("/sign-in");
         }
       }
@@ -274,6 +297,12 @@ const AuthProvider = ({ children }) => {
           type: "UPDATE_FOLLOW_USER_FOLLOWERS",
           payload: updatedUsers,
         });
+        if (state.loggedInUser.username === state.selectedUser.username) {
+          dispatch({
+            type: "UPDATE_SELECTED_USER",
+            payload: response.data.user,
+          });
+        }
         toast.success(
           "You started Following " + response.data.followUser.username
         );
@@ -359,24 +388,34 @@ const AuthProvider = ({ children }) => {
   };
 
   const searchUsers = (e) => {
-    const foundUsers = state.users.filter(
-      (user) =>
-        user.username.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        user.firstName.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        user.lastName.toLowerCase().includes(e.target.value.toLowerCase())
-    );
+    let foundUsers = [];
+    console.log(e.target.value, " e value");
+    if (e.target.value) {
+      foundUsers = state.users.filter(
+        (user) =>
+          user.username.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          user.firstName.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          user.lastName.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+    }
     dispatch({ type: "UPDATE_SEARCHED_USERS", payload: foundUsers });
   };
 
   const populateEditProfileDetails = () => {
     console.log("in populate profile details");
     const profileDetails = {
-      avatar: state?.loggedInUser?.avatar,
-      firstName: state?.loggedInUser?.firstName,
-      lastName: state?.loggedInUser?.lastName,
-      username: state?.loggedInUser?.username,
-      bio: state?.loggedInUser?.bio,
-      website: state?.loggedInUser?.website,
+      // avatar: state?.loggedInUser?.avatar,
+      // firstName: state?.loggedInUser?.firstName,
+      // lastName: state?.loggedInUser?.lastName,
+      // username: state?.loggedInUser?.username,
+      // bio: state?.loggedInUser?.bio,
+      // website: state?.loggedInUser?.website,
+      avatar: state?.selectedUser?.avatar,
+      firstName: state?.selectedUser?.firstName,
+      lastName: state?.selectedUser?.lastName,
+      username: state?.selectedUser?.username,
+      bio: state?.selectedUser?.bio,
+      website: state?.selectedUser?.website,
     };
     dispatch({ type: "SET_EDIT_PROFILE_DETAILS", payload: profileDetails });
   };
@@ -441,6 +480,7 @@ const AuthProvider = ({ children }) => {
     onEditProfileSubmit,
     handleEditProfileChange,
     getUsers,
+    avatars,
   };
 
   return (

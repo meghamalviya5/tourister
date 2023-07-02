@@ -22,7 +22,7 @@ const UsersSidebar = () => {
     getUserPosts,
   } = useContext(PostContext);
 
-  // console.log("in user sidebar");
+  console.log("in user sidebar");
   // console.log("loggedInUser -----", loggedInUser);
   // console.log("users -----", users);
 
@@ -41,6 +41,8 @@ const UsersSidebar = () => {
     }
     return false;
   });
+
+  console.log("in user sidebar, userToFollow = ", usersToFollow);
 
   return (
     <aside className="mt-xl mr-xxl sidebar2">

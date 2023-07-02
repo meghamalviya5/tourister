@@ -1,0 +1,8 @@
+.fa-eye-slash,
+.fa-eye {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.1rem;
+  font-size: 15px;
+  cursor: pointer;
+}

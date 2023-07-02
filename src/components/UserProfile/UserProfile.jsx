@@ -33,6 +33,7 @@ const UserProfile = () => {
   }, [loggedInUser]);
 
   console.log("hihi in userprofile");
+  console.log("selectedUser in userprofile = ", selectedUser);
 
   return (
     <div className="flex flex-column flex-center">

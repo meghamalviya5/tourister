@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import jwt_decode from "jwt-decode";
 
 export const requiresAuth = function (request) {
+  console.log("iin authutils");
   const encodedToken = request.requestHeaders.authorization;
   const decodedToken = jwt_decode(
     encodedToken,
