@@ -130,6 +130,9 @@ export const authReducer = (state, action) => {
         selectedUser: { ...state.selectedUser, ...action.payload },
       };
 
+    case "SET_ENCODED_TOKEN":
+      return { ...state, encodedToken: action.payload };
+
     default:
       return { state };
   }

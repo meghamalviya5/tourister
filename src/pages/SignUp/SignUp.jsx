@@ -11,86 +11,82 @@ const SignUp = () => {
   return state.isLoaded ? (
     <Spinner />
   ) : (
-    <div>
-      <h1>Tourister</h1>
-      <form method="post" onSubmit={newUserSignUpHandler}>
-        <h2>Sign Up</h2>
-        {/* <div>
-          <label id="full-name">Full Name</label>
-          <input
-            id="full-name"
-            placeholder="Enter Full Name"
-            value={state.signUpDetails.fullName}
-            onChange={(e) =>
-              dispatch({
-                type: "UPDATE_SIGN_UP_DETAILS",
-                payload: { key: "fullName", value: e.target.value },
-              })
-            }
-          />
-        </div> */}
-        <div>
-          <label id="first-name">First Name</label>
-          <input
-            id="first-name"
-            placeholder="Enter First Name"
-            value={state.signUpDetails.firstName}
-            onChange={(e) =>
-              dispatch({
-                type: "UPDATE_SIGN_UP_DETAILS",
-                payload: { key: "firstName", value: e.target.value },
-              })
-            }
-          />
-        </div>
-        <div>
-          <label id="last-name">Last Name</label>
-          <input
-            id="last-name"
-            placeholder="Enter Last Name"
-            value={state.signUpDetails.lastName}
-            onChange={(e) =>
-              dispatch({
-                type: "UPDATE_SIGN_UP_DETAILS",
-                payload: { key: "lastName", value: e.target.value },
-              })
-            }
-          />
-        </div>
-        <div>
-          <label id="email">Email Address</label>
-          <input
-            id="email"
-            placeholder="Enter Email Address"
-            value={state.signUpDetails.email}
-            onChange={(e) =>
-              dispatch({
-                type: "UPDATE_SIGN_UP_DETAILS",
-                payload: { key: "email", value: e.target.value },
-              })
-            }
-          />
-        </div>
-        <div>
-          <label id="username">Username</label>
-          <input
-            id="username"
-            placeholder="Enter Username"
-            value={state.signUpDetails.username}
-            onChange={(e) =>
-              dispatch({
-                type: "UPDATE_SIGN_UP_DETAILS",
-                payload: { key: "username", value: e.target.value },
-              })
-            }
-          />
-        </div>
-        <div>
-          <label id="password" className="relative">
-            Password
+    <div className="flex flex-column flex-center h-full w-full">
+      <h2 className="fw-black  mb-m">Tourist Connect</h2>
+      <div className="white-bg br-m p-xxl pt-l pb-l" style={{ width: "30rem" }}>
+        <form method="post" onSubmit={newUserSignUpHandler}>
+          <h3 className="txt-center mb-s txt-l">Sign Up</h3>
+          <div className="flex flex-column">
+            <label htmlFor="first-name">Enter First Name</label>
+            <input
+              id="first-name"
+              className="p-xs txt-s br-s mb-s"
+              style={{ border: "1px solid grey" }}
+              placeholder="Enter First Name"
+              value={state.signUpDetails.firstName}
+              onChange={(e) =>
+                dispatch({
+                  type: "UPDATE_SIGN_UP_DETAILS",
+                  payload: { key: "firstName", value: e.target.value },
+                })
+              }
+            />
+          </div>
+          <div className="flex flex-column">
+            <label htmlFor="last-name">Enter Last Name</label>
+            <input
+              id="last-name"
+              placeholder="Enter Last Name"
+              className="p-xs txt-s br-s mb-s"
+              style={{ border: "1px solid grey" }}
+              value={state.signUpDetails.lastName}
+              onChange={(e) =>
+                dispatch({
+                  type: "UPDATE_SIGN_UP_DETAILS",
+                  payload: { key: "lastName", value: e.target.value },
+                })
+              }
+            />
+          </div>
+          <div className="flex flex-column">
+            <label htmlFor="email">Email Address</label>
+            <input
+              id="email"
+              placeholder="Enter Email Address"
+              className="p-xs txt-s br-s mb-s"
+              style={{ border: "1px solid grey" }}
+              value={state.signUpDetails.email}
+              onChange={(e) =>
+                dispatch({
+                  type: "UPDATE_SIGN_UP_DETAILS",
+                  payload: { key: "email", value: e.target.value },
+                })
+              }
+            />
+          </div>
+          <div className="flex flex-column">
+            <label htmlFor="username">Username</label>
+            <input
+              id="username"
+              placeholder="Enter Username"
+              className="p-xs txt-s br-s mb-s"
+              style={{ border: "1px solid grey" }}
+              value={state.signUpDetails.username}
+              onChange={(e) =>
+                dispatch({
+                  type: "UPDATE_SIGN_UP_DETAILS",
+                  payload: { key: "username", value: e.target.value },
+                })
+              }
+            />
+          </div>
+          <div className="flex flex-column relative">
+            <label htmlFor="password">Password</label>
             <input
               id="password"
               type={state.signUpDetails.showPassword ? "text" : "password"}
+              className="p-xs txt-s br-s mb-s"
+              style={{ border: "1px solid grey" }}
               placeholder="Enter Password"
               value={state.signUpDetails.password}
               onChange={(e) =>
@@ -114,13 +110,13 @@ const SignUp = () => {
                 state.signUpDetails.showPassword ? "fa-eye" : "fa-eye-slash"
               } `}
             ></i>
-          </label>
-        </div>
-        <div>
-          <label id="confirm-password" className="relative">
-            Confirm Password
+          </div>
+          <div className="flex flex-column relative">
+            <label htmlFor="confirm-password">Confirm Password </label>
             <input
               id="confirm-password"
+              className="p-xs txt-s br-s mb-s"
+              style={{ border: "1px solid grey" }}
               type={
                 state.signUpDetails.showConfirmPassword ? "text" : "password"
               }
@@ -149,24 +145,33 @@ const SignUp = () => {
                   : "fa-eye-slash"
               } `}
             ></i>
-          </label>
-        </div>
-        <button type="submit" name="sign-up">
-          Sign Up
-        </button>
-        <button type="submit" name="dummyDetails">
-          Fill Dummy Values
-        </button>
-        <p>
-          Already have an account?
-          <Link
-            to="/sign-in"
-            onClick={() => dispatch({ type: "RESET_SIGN_UP" })}
+          </div>
+          <button
+            type="submit"
+            name="sign-up"
+            className="w-full primary-bg white-color p-s outline-transparent border-none pt-xs pb-xs txt-s mb-s"
           >
-            Sign in
-          </Link>
-        </p>
-      </form>
+            Sign Up
+          </button>
+          <button
+            type="submit"
+            name="dummyDetails"
+            className="w-full primary-bg white-color p-s outline-transparent border-none pt-xs pb-xs txt-s"
+          >
+            Fill Dummy Values
+          </button>
+          <p className="txt-center w-full mt-m" style={{ display: "block" }}>
+            Already have an account?
+            <Link
+              to="/sign-in"
+              onClick={() => dispatch({ type: "RESET_SIGN_UP" })}
+              className="primary-color p-xs"
+            >
+              Sign In
+            </Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };

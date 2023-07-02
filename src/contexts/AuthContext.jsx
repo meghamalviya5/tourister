@@ -14,7 +14,7 @@ import travellerMap from "../assets/traveller-map.png";
 import adventurer from "../assets/adventurer.png";
 import traveller from "../assets/traveller.png";
 
-const encodedToken = localStorage.getItem("token");
+//const encodedToken = localStorage.getItem("token");
 
 export const AuthContext = createContext();
 
@@ -59,6 +59,7 @@ const AuthProvider = ({ children }) => {
     followersModalStatus: false,
     searchedUsers: [],
     editProfileModal: false,
+    encodedToken: "",
   };
 
   const avatars = [girl, woman, womanCam, travellerMap, adventurer, traveller];
@@ -70,6 +71,10 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     getUsers();
     populateEditProfileDetails();
+    dispatch({
+      type: "SET_ENCODED_TOKEN",
+      payload: localStorage.getItem("token"),
+    });
   }, [state.loggedInUser]);
 
   console.log("in auth context");
@@ -103,13 +108,17 @@ const AuthProvider = ({ children }) => {
       // console.log(response, "success response");
       if (response.status === 200) {
         localStorage.setItem("token", response.data.encodedToken);
-        toast.success("Signed in Successfully!");
+        dispatch({
+          type: "SET_ENCODED_TOKEN",
+          payload: response.data.encodedToken,
+        });
         dispatch({
           type: "UPDATE_LOGGED_IN_USER",
           payload: response.data.foundUser,
         });
         dispatch({ type: "RESET_SIGN_IN" });
-        // navigate("/home");
+        toast.success("Signed in Successfully!");
+
         navigate("/");
       }
     } catch (error) {
@@ -168,7 +177,13 @@ const AuthProvider = ({ children }) => {
           lastName: state.signUpDetails.lastName,
         });
         if (response?.status === 201) {
-          localStorage.setItem("token", response.data.encodedToken);
+          if (localStorage.getItem("token")) {
+            localStorage.setItem("token", response.data.encodedToken);
+            dispatch({
+              type: "SET_ENCODED_TOKEN",
+              payload: "",
+            });
+          }
           toast.success("Signed Up Successfully!");
           dispatch({ type: "RESET_SIGN_UP" });
           dispatch({
@@ -195,7 +210,7 @@ const AuthProvider = ({ children }) => {
       const response = await axios.post(
         `/api/users/bookmark/${postId}`,
         {},
-        { headers: { authorization: encodedToken } }
+        { headers: { authorization: state.encodedToken } }
       );
       if (response.status === 200) {
         dispatch({
@@ -224,7 +239,7 @@ const AuthProvider = ({ children }) => {
         {},
         {
           headers: {
-            authorization: encodedToken,
+            authorization: state.encodedToken,
           },
         }
       );
@@ -254,7 +269,7 @@ const AuthProvider = ({ children }) => {
   const getUserBookmarks = async () => {
     try {
       const response = await axios.get(`/api/users/bookmark`, {
-        headers: { authorization: encodedToken },
+        headers: { authorization: state.encodedToken },
       });
       if (response.status === 200) {
         dispatch({
@@ -278,7 +293,7 @@ const AuthProvider = ({ children }) => {
         `/api/users/follow/${followUserId}`,
         {},
         {
-          headers: { authorization: encodedToken },
+          headers: { authorization: state.encodedToken },
         }
       );
       if (response.status === 200) {
@@ -323,7 +338,7 @@ const AuthProvider = ({ children }) => {
         `/api/users/unfollow/${followUserId}`,
         {},
         {
-          headers: { authorization: encodedToken },
+          headers: { authorization: state.encodedToken },
         }
       );
       if (response.status === 200) {
@@ -441,7 +456,7 @@ const AuthProvider = ({ children }) => {
             website: state?.editProfileDetails?.website,
           },
         },
-        { headers: { authorization: encodedToken } }
+        { headers: { authorization: state.encodedToken } }
       );
       if (response.status === 201) {
         toast.success("User Profile Updated Successfully!");

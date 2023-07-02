@@ -1,9 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext, PostContext } from "../..";
 import PostCard from "../PostCard/PostCard";
 
 const UserPosts = () => {
-  const { state } = useContext(PostContext);
+  const { state, getUserPosts } = useContext(PostContext);
+  const {
+    state: { selectedUser },
+  } = useContext(AuthContext);
+
+  useEffect(() => {
+    getUserPosts(selectedUser.username);
+  }, [state.allPosts, state?.userPosts]);
 
   return (
     <div white-bg>

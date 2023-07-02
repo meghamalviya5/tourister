@@ -51,12 +51,25 @@ const Sidebar = () => {
             </div>
 
             <div className="pt-s black-color fw-semibold">
+              <Link
+                to="profile"
+                onClick={() => {
+                  getUserPosts(loggedInUser?.username);
+                  getUserById(loggedInUser?._id);
+                }}
+              >
+                <i className="fa fa-solid fa-user"></i> &nbsp;
+                <span className="fw-bold">Profile</span>
+              </Link>
+            </div>
+
+            {/* <div className="pt-s black-color fw-semibold">
               <Link to="/landing-page" onClick={signOutHandler}>
-                {/* <i className="fa fa-solid fa-user"></i> &nbsp; */}
+                 //line not reqd//<i className="fa fa-solid fa-user"></i> &nbsp;
                 <FontAwesomeIcon icon={faSignOut} /> &nbsp;
                 <span className="fw-bold">Sign Out</span>
               </Link>
-            </div>
+            </div> */}
 
             <button
               className="mt-m p-s primary-bg white-color border-none outline-transparent new-post-btn"

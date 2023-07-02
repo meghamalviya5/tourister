@@ -9,17 +9,16 @@ import { AuthContext } from "./AuthContext";
 
 export const PostContext = createContext();
 
-const encodedToken = localStorage.getItem("token");
+//const encodedToken = localStorage.getItem("token");
 
 const PostProvider = ({ children }) => {
   const {
-    state: { users },
+    state: { users, encodedToken },
   } = useContext(AuthContext);
 
   const initialState = {
     allPosts: [],
     filteredPosts: [],
-    // users: [],
     userPosts: [],
     selectedPostForEditDelete: "",
     showEditDelete: false,

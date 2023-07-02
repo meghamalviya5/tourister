@@ -11,17 +11,16 @@ const Navbar = () => {
   const { signOutHandler } = useContext(AuthContext);
 
   return (
-    <div>
-      <Link href="/">
-        <span>Tourister</span>
+    <div className="flex flex-space-between p-s pl-xxl txt-m ml-m">
+      <Link to="/">
+        <span>Tourist Connect</span>
       </Link>
-
-      {/* <div className="pt-s black-color fw-semibold">
+      <div className="pt-s black-color fw-semibold">
         <Link to="/landing-page" onClick={signOutHandler}>
           <FontAwesomeIcon icon={faSignOut} /> &nbsp;
           <span className="fw-bold">Sign Out</span>
         </Link>
-      </div> */}
+      </div>
     </div>
   );
 };

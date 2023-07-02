@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .App-logo {
@@ -30,7 +30,6 @@
 
 .App {
   font-family: sans-serif;
-  text-align: center;
 }
 .App button.update-post {
   padding: 13px 29px;
