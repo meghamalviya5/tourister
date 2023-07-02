@@ -7,9 +7,11 @@ const UserPosts = () => {
 
   return (
     <div white-bg>
-      {state?.userPosts.map((post) => (
-        <PostCard post={post} />
-      ))}
+      {state?.userPosts.length ? (
+        state?.userPosts.map((post) => <PostCard post={post} />)
+      ) : (
+        <h3>No post available to show!</h3>
+      )}
     </div>
   );
 };

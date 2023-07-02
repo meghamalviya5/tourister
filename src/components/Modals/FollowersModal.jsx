@@ -1,6 +1,7 @@
 import React, { useContext, useRef } from "react";
 import ReactDom from "react-dom";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext, PostContext } from "../..";
+import { Link } from "react-router-dom";
 // import "./Modal.css";
 
 const FollowersModal = () => {
@@ -8,7 +9,10 @@ const FollowersModal = () => {
   const {
     state: { selectedUser },
     dispatch,
+    getUserById,
   } = useContext(AuthContext);
+
+  const { getUserPosts } = useContext(PostContext);
 
   const closeFollowersModal = (e) => {
     if (e.target === followersModalRef.current) {
@@ -28,13 +32,26 @@ const FollowersModal = () => {
           <div>
             {selectedUser.followers.map((user) => (
               <div>
-                <div className="flex p-s flex-space-between flex-align-center">
-                  <div className="grey-bg br-full width-xl height-xl"></div>
-                  <div className="flex flex-column">
-                    <div className="fw-bold">{`${user?.firstName} ${user?.lastName}`}</div>
-                    <div className="fw-light grey-color">{`@${user?.username}`}</div>
+                <Link
+                  to=""
+                  onClick={() => {
+                    getUserPosts(user.username);
+                    getUserById(user._id);
+                    dispatch({
+                      type: "SET_FOLLOWING_MODAL_STATUS",
+                      payload: false,
+                    });
+                  }}
+                  key={user._id}
+                >
+                  <div className="flex p-s flex-space-between flex-align-center">
+                    <div className="grey-bg br-full width-xl height-xl"></div>
+                    <div className="flex flex-column">
+                      <div className="fw-bold">{`${user?.firstName} ${user?.lastName}`}</div>
+                      <div className="fw-light grey-color">{`@${user?.username}`}</div>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </div>

@@ -24,7 +24,7 @@ const Bookmarks = () => {
           <PostCard post={bookmarkedPost} />
         ))
       ) : (
-        <div>No bookmarks yet!</div>
+        <div>No bookmarks added yet!</div>
       )}
     </div>
   );

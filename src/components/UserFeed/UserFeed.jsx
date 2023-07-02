@@ -49,9 +49,13 @@ const UserFeed = () => {
       <main className="mt-xl">
         <NewPost />
         <PostHeader />
-        {state?.filteredPosts?.map((post) => (
-          <PostCard post={post} key={post._id} />
-        ))}
+        {state?.filteredPosts.length > 0 ? (
+          state?.filteredPosts?.map((post) => (
+            <PostCard post={post} key={post._id} />
+          ))
+        ) : (
+          <h3>No post available to show!</h3>
+        )}
       </main>
       <ToastContainer />
     </div>
