@@ -25,7 +25,7 @@ const PostProvider = ({ children }) => {
     editPostModal: false,
     filterModalStatus: false,
     createPostModalStatus: false,
-    filters: { sortBy: "" },
+    filters: { sortBy: "Latest" },
   };
 
   const [state, dispatch] = useReducer(postReducer, initialState);
@@ -211,6 +211,7 @@ const PostProvider = ({ children }) => {
       type: "SET_SELECTED_POST_ID",
       payload: postId,
     });
+    //dispatch({ type: "SET_EDIT_DELETE_SHOW_STATUS" });
   };
 
   const findUser = (userName) => {
@@ -222,25 +223,25 @@ const PostProvider = ({ children }) => {
   };
 
   const sortByTrending = () => {
-    dispatch({ type: "UPDATE_FILTERS", payload: "sortByTrending" });
+    dispatch({ type: "UPDATE_FILTERS", payload: "Trending" });
   };
   const sortByLatest = () => {
-    dispatch({ type: "UPDATE_FILTERS", payload: "sortByLatest" });
+    dispatch({ type: "UPDATE_FILTERS", payload: "Latest" });
   };
   const sortByOldest = () => {
-    dispatch({ type: "UPDATE_FILTERS", payload: "sortByOldest" });
+    dispatch({ type: "UPDATE_FILTERS", payload: "Oldest" });
   };
 
   if (state.filters.sortBy.length > 0) {
-    if (state.filters.sortBy === "sortByTrending") {
+    if (state.filters.sortBy === "Trending") {
       state.filteredPosts = state.filteredPosts.sort(
         (a, b) => b.likes.likeCount - a.likes.likeCount
       );
-    } else if (state.filters.sortBy === "sortByLatest") {
+    } else if (state.filters.sortBy === "Latest") {
       state.filteredPosts = state.filteredPosts.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
-    } else if (state.filters.sortBy === "sortByOldest") {
+    } else if (state.filters.sortBy === "Oldest") {
       state.filteredPosts = state.filteredPosts.sort(
         (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
       );

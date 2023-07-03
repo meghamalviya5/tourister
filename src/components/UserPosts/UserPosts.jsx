@@ -5,12 +5,14 @@ import PostCard from "../PostCard/PostCard";
 const UserPosts = () => {
   const { state, getUserPosts } = useContext(PostContext);
   const {
-    state: { selectedUser },
+    state: { selectedUser, users },
   } = useContext(AuthContext);
 
-  useEffect(() => {
-    getUserPosts(selectedUser.username);
-  }, [state.allPosts, state?.userPosts]);
+  // useEffect(() => {
+  //   getUserPosts(selectedUser.username);
+  // }, [users]);
+
+  console.log("in user posts");
 
   return (
     <div white-bg>

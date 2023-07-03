@@ -6,12 +6,12 @@ import Filters from "../Filters/Filters";
 
 const PostHeader = () => {
   const {
-    state: { filterModalStatus },
+    state: { filters, filterModalStatus },
     dispatch,
   } = useContext(PostContext);
   return (
     <div className="flex flex-space-between mr-xxl flex-align-center pt-s relative">
-      <h3>Posts</h3>
+      <h3>{filters.sortBy} Posts</h3>
       <i
         className="fa fa-regular fa-sliders"
         onClick={() =>

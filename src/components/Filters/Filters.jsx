@@ -20,9 +20,15 @@ const Filters = () => {
       onClick={closeFilters}
     >
       <div className="filters">
-        <button onClick={sortByTrending}>Trending</button>
-        <button onClick={sortByLatest}>Latest</button>
-        <button onClick={sortByOldest}>Oldest</button>
+        <button onClick={sortByTrending} value="Trending">
+          Trending
+        </button>
+        <button onClick={sortByLatest} value="Latest">
+          Latest
+        </button>
+        <button onClick={sortByOldest} value="Oldest">
+          Oldest
+        </button>
       </div>
     </div>,
     document.getElementById("portal")
