@@ -17,16 +17,21 @@ const EditPostModal = ({ selectedPost }) => {
   console.log("in edit modal");
   return ReactDom.createPortal(
     <div className="container" ref={editModalRef} onClick={closeEditModal}>
-      <div className="editModal">
-        <NewPost editPostDetail={selectedPost} />
-        <button
-          className="btn-close"
-          onClick={() =>
-            dispatch({ type: "SET_EDIT_MODAL_STATUS", payload: false })
-          }
-        >
-          X
-        </button>
+      <div className="editModal flex flex-column p-s">
+        <div className="flex flex-space-between">
+          <div>Edit Post</div>
+          <button
+            className="btn-close-post"
+            onClick={() =>
+              dispatch({ type: "SET_EDIT_MODAL_STATUS", payload: false })
+            }
+          >
+            X
+          </button>
+        </div>
+        <div className="white-bg p-xs mt-s">
+          <NewPost editPostDetail={selectedPost} />
+        </div>
       </div>
     </div>,
     document.getElementById("portal")

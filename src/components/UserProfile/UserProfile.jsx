@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { PostContext, AuthContext } from "../..";
-import FollowingModal from "../Modals/FollowingModal";
+import FollowingModal from "../Modals/FollowingModal/FollowingModal";
 import "./UserProfile.css";
-import FollowersModal from "../Modals/FollowersModal";
+import FollowersModal from "../Modals/FollowersModal/FollowersModal";
 import EditProfileModal from "../Modals/EditProfileModal/EditProfileModal";
 
 const UserProfile = () => {

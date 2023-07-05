@@ -13,6 +13,8 @@ import womanCam from "../assets/woman-cam.png";
 import travellerMap from "../assets/traveller-map.png";
 import adventurer from "../assets/adventurer.png";
 import traveller from "../assets/traveller.png";
+import gourmet from "../assets/gourmet.png";
+import tourist from "../assets/tourist.png";
 
 //const encodedToken = localStorage.getItem("token");
 
@@ -62,7 +64,16 @@ const AuthProvider = ({ children }) => {
     encodedToken: "",
   };
 
-  const avatars = [girl, woman, womanCam, travellerMap, adventurer, traveller];
+  const avatars = [
+    girl,
+    woman,
+    womanCam,
+    travellerMap,
+    adventurer,
+    traveller,
+    gourmet,
+    tourist,
+  ];
 
   const [state, dispatch] = useReducer(authReducer, initialState);
   //console.log(state.loggedInUser, " ------loggedInUser");

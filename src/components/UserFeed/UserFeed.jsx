@@ -47,7 +47,9 @@ const UserFeed = () => {
   return (
     <div>
       <main className="mt-xl">
-        <NewPost />
+        <div className="white-bg mr-xxl p-xs mt-s">
+          <NewPost />
+        </div>
         <PostHeader />
         {state?.filteredPosts.length > 0 ? (
           state?.filteredPosts?.map((post) => (

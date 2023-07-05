@@ -15,10 +15,15 @@ const Navbar = () => {
       <Link to="/">
         <span>Tourist Connect</span>
       </Link>
-      <div className="pt-s black-color fw-semibold">
-        <Link to="/landing-page" onClick={signOutHandler}>
+      <div className="black-color fw-semibold">
+        <Link
+          to="/landing-page"
+          onClick={signOutHandler}
+          className="hovertext relative"
+          data-hover="Sign Out"
+        >
           <FontAwesomeIcon icon={faSignOut} /> &nbsp;
-          <span className="fw-bold">Sign Out</span>
+          {/* <span className="fw-bold">Sign Out</span> */}
         </Link>
       </div>
     </div>

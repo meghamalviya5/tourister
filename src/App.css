@@ -1,11 +1,4 @@
-.App {
-  /* text-align: center; */
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+@import url(./style.css);
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -13,7 +6,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -26,7 +19,7 @@
 
 .App-link {
   color: #61dafb;
-}
+} */
 
 .App {
   font-family: sans-serif;
@@ -70,61 +63,97 @@
 }
 
 .container .editModal,
-.following-modal,
-.edit-profile-modal {
+.create-post-modal {
   z-index: 1;
-  width: 350px;
-  height: 220px;
+  width: 30rem;
+  overflow-y: auto;
+  /* height: 220px; */
   background: white;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
   border-radius: 5px;
   position: relative;
   animation: animate 0.3s;
 }
 
-.container .following-modal,
-.followers-modal {
-  z-index: 1;
-  width: 25rem;
-  height: 20rem;
+.container .edit-profile-modal {
+  /* z-index: 1; */
+  width: 22rem;
+  overflow-y: auto;
+  /* height: 220px; */
   background: white;
   display: flex;
   /* align-items: center; */
   /* justify-content: center; */
   border-radius: 5px;
-  position: relative;
-  animation: animate 0.3s;
+  /* position: relative; */
+  /* animation: animate 0.3s; */
 }
 
-.editModal .btn-close-post {
+.container .following-modal,
+.followers-modal {
+  /* z-index: 1; */
+  width: 20rem;
+  padding: 1rem;
+  /* height: 10rem; */
+  /* max-height: 15rem; */
+  overflow-y: auto;
+  background: white;
+  display: flex;
+  /* align-items: center; */
+  gap: 0.5rem;
+  border-radius: 5px;
+  /* justify-content: center; */
+
+  /* position: relative; */
+  /* animation: animate 0.3s; */
+}
+
+.editModal .btn-close-post,
+.create-post-modal .btn-close {
   position: absolute;
   top: 7px;
   right: 7px;
-  padding: 8px 11px;
+  padding: 0.4rem 0.7rem;
   background: crimson;
   color: white;
   font-weight: bold;
   border: none;
   outline: none;
-  border-radius: 2px;
+  border-radius: 0.5rem;
   cursor: pointer;
 }
 
-.following-modal,
-.followers-modal .btn-close {
-  position: absolute;
-  top: 7px;
-  right: 7px;
-  padding: 8px 11px;
+.following-modal .btn-close,
+.followers-modal .btn-close,
+.edit-profile-modal .btn-close {
+  /* position: absolute; */
+  /* top: 7px;
+  right: 7px; */
+  padding: 0.4rem 0.7rem;
   background: crimson;
   color: white;
   font-weight: bold;
   border: none;
   outline: none;
-  border-radius: 2px;
+  border-radius: 0.5rem;
   cursor: pointer;
+}
+
+.edit-profile-modal .btn-save {
+  /* position: absolute; */
+  /* top: 7px;
+  right: 7px; */
+  padding: 0.7rem 1rem;
+  background: var(--primary-color);
+  margin: auto;
+  color: white;
+  font-weight: bold;
+  border: none;
+  /* outline: none; */
+  border-radius: 0.5rem;
+  /* cursor: pointer; */
 }
 
 @keyframes App-logo-spin {

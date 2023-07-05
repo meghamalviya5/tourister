@@ -23,6 +23,7 @@ export const authReducer = (state, action) => {
       return {
         ...state,
         loggedInUser: action.payload,
+        selectedUser: action.payload,
       };
 
     case "UPDATE_SIGN_UP_DETAILS":

@@ -19,8 +19,23 @@ const CreatePostModal = () => {
       ref={createPostModalRef}
       onClick={closeCreatePostModal}
     >
-      <div className="create-post-modal">
-        <NewPost />
+      <div className="create-post-modal relative flex flex-column p-s">
+        <div className="flex flex-space-between">
+          <button
+            className="btn-close"
+            onClick={() =>
+              dispatch({
+                type: "SET_CREATE_POST_MODAL_STATUS",
+                payload: false,
+              })
+            }
+          >
+            X
+          </button>
+        </div>
+        <div className="white-bg p-xs mt-s">
+          <NewPost />
+        </div>
       </div>
     </div>,
     document.getElementById("portal")

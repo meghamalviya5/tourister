@@ -48,6 +48,11 @@ h6 {
   line-height: var(--m-size);
 }
 
+.txt-lt-s {
+  font-size: 0.8rem;
+  line-height: 1rem;
+}
+
 .txt-xs {
   font-size: var(--xs-size);
   line-height: var(--s-size);
@@ -60,6 +65,14 @@ h6 {
 
 .w-full {
   width: 100%;
+}
+
+.w-m {
+  width: var(--m-size);
+}
+
+.w-l {
+  width: var(--l-size);
 }
 
 /* for margin */
@@ -330,12 +343,21 @@ h6 {
 }
 
 /* border and outline */
+.border {
+  border: 1px solid black;
+}
+
 .border-none {
   border: none;
 }
 
 .outline-transparent {
   outline: 0.1rem solid transparent;
+}
+
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
 /* for font-weight */
@@ -453,8 +475,16 @@ h6 {
   flex-flow: row wrap;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .flex-column {
   flex-flow: column wrap;
+}
+
+.flex-dir-col {
+  flex-direction: column;
 }
 
 .flex-space-between {
@@ -472,6 +502,18 @@ h6 {
 .flex-center {
   align-items: center;
   justify-content: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.flex-gap-2 {
+  gap: 0.5rem;
+}
+
+.flex-gap-4 {
+  gap: 1rem;
 }
 
 .flex-space-around {
