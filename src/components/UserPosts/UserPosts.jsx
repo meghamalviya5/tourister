@@ -10,16 +10,20 @@ const UserPosts = () => {
 
   // useEffect(() => {
   //   getUserPosts(selectedUser.username);
-  // }, [users]);
+  // }, [state.userPosts]);
+
+  const loggedInUserPosts = state.allPosts.filter(
+    (post) => post.username === selectedUser.username
+  );
 
   console.log("in user posts");
 
   return (
     <div white-bg>
-      {state?.userPosts.length ? (
-        state?.userPosts.map((post) => <PostCard post={post} />)
+      {loggedInUserPosts.length ? (
+        loggedInUserPosts.map((post) => <PostCard post={post} />)
       ) : (
-        <h3>No post available to show!</h3>
+        <h3 className="pt-m pb-m pr-m">No post available to show!</h3>
       )}
     </div>
   );

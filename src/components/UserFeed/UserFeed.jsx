@@ -56,7 +56,7 @@ const UserFeed = () => {
             <PostCard post={post} key={post._id} />
           ))
         ) : (
-          <h3>No post available to show!</h3>
+          <h3 className="pt-m pb-m pr-m">No post available to show!</h3>
         )}
       </main>
       <ToastContainer />

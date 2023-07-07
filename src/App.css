@@ -80,10 +80,12 @@
 .container .edit-profile-modal {
   /* z-index: 1; */
   width: 22rem;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   /* height: 220px; */
   background: white;
   display: flex;
+  /* overflow-x: hidden;
+  overflow-y: auto; */
   /* align-items: center; */
   /* justify-content: center; */
   border-radius: 5px;

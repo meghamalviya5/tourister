@@ -544,6 +544,10 @@ h6 {
   position: absolute;
 }
 
+.fixed {
+  position: fixed;
+}
+
 /* opacity */
 .opacity-0 {
   opacity: 0;

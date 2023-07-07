@@ -171,7 +171,7 @@ const AuthProvider = ({ children }) => {
         });
         dispatch({
           type: "UPDATE_SIGN_UP_DETAILS",
-          payload: { key: "firstName", value: "Jade Johnson" },
+          payload: { key: "firstName", value: "Jade" },
         });
         dispatch({
           type: "UPDATE_SIGN_UP_DETAILS",

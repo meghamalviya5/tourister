@@ -17,6 +17,7 @@ import EditDeletePost from "../EditDeletePost/EditDeletePost";
 import moment from "moment";
 import FollowUnfollow from "../FollowUnfollow/FollowUnfollow";
 import { Link, useParams } from "react-router-dom";
+import "./PostCard.css";
 
 const PostCard = ({ post }) => {
   const { postId } = useParams();
@@ -42,8 +43,8 @@ const PostCard = ({ post }) => {
         >
           <img src={`${user?.avatar}`} alt="tourist" className="br-full" />
         </div>
-        <div>
-          <div className="flex flex-row flex-align-center flex-space-between">
+        <div className="w-full">
+          <div className="flex flex-row flex-align-center flex-space-between ">
             <div className="flex flex-row">
               <p className="fw-semibold">
                 {`${user?.firstName} ${user?.lastName}`}
@@ -56,8 +57,8 @@ const PostCard = ({ post }) => {
               </p>
             </div>
 
-            <div className="relative">
-              <p className="" onClick={() => handleEditDeleteShow(post._id)}>
+            <div>
+              <p onClick={() => handleEditDeleteShow(post._id)}>
                 <FontAwesomeIcon icon={faEllipsis} />
               </p>
 
@@ -74,26 +75,35 @@ const PostCard = ({ post }) => {
           <Link to={`/post-details/${post._id}`}>
             <p className="pr-s pt-xs">{post.content}</p>
           </Link>
-          <div className="flex flex-row nowrap flex-space-between pb-xs pt-m pr-s flex-align-center">
-            {post.likes.likedBy.find(
-              (user) => user.username === authState.loggedInUser.username
-            ) ? (
-              <FontAwesomeIcon
-                icon={faHeartSolid}
-                onClick={() => dislikePost(post)}
-              />
-            ) : (
-              <FontAwesomeIcon
-                icon={faHeartLight}
-                onClick={() => likePost(post)}
-              />
-            )}
-            {post.likes.likeCount > 0 ? post.likes.likeCount : null}
+          <div className="flex flex-row nowrap flex-space-between pb-xs pt-m pr-s flex-align-center ">
+            <div className="flex flex-gap-4">
+              <div>
+                {post.likes.likedBy.find(
+                  (user) => user.username === authState.loggedInUser.username
+                ) ? (
+                  <FontAwesomeIcon
+                    icon={faHeartSolid}
+                    className="fill-red"
+                    onClick={() => dislikePost(post)}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faHeartLight}
+                    className=""
+                    onClick={() => likePost(post)}
+                  />
+                )}
+              </div>
+              <div>
+                {post.likes.likeCount > 0 ? post.likes.likeCount : null}
+              </div>
+            </div>
             {authState.loggedInUser.bookmarks.find(
               (postId) => postId === post._id
             ) ? (
               <FontAwesomeIcon
                 icon={faBookmarkSolid}
+                className="fill-gray"
                 onClick={() => removeFromBookmark(post._id)}
               />
             ) : (

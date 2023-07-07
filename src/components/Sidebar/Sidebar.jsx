@@ -91,7 +91,7 @@ const Sidebar = () => {
               getUserById(loggedInUser?._id);
             }}
           >
-            <div className="flex flex-space-between flex-align-center">
+            <div className="flex flex-space-between flex-align-center fixed">
               <div className="flex">
                 <div className="grey-bg br-full width-xl height-xl">
                   <img

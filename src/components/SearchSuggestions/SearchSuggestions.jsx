@@ -22,9 +22,13 @@ const SearchSuggestions = () => {
           }}
           key={user._id}
         >
-          <div className="flex p-s flex-space-around flex-align-center ">
-            <div className="br-full width-xl height-xl mr-xs">
-              <img src={`${user?.avatar}`} alt="tourist" className="br-full" />
+          <div className="flex p-s search-user br-m">
+            <div>
+              <img
+                src={`${user?.avatar}`}
+                alt="tourist"
+                className="br-full width-xl height-xl mr-xs"
+              />
             </div>
             <div className="flex flex-column">
               <div className="fw-bold">{`${user?.firstName} ${user?.lastName}`}</div>

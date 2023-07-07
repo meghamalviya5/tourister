@@ -7,7 +7,7 @@ import EditProfileModal from "../Modals/EditProfileModal/EditProfileModal";
 
 const UserProfile = () => {
   const {
-    state: { userPosts },
+    state: { allPosts, userPosts },
   } = useContext(PostContext);
   const {
     state: {
@@ -25,6 +25,10 @@ const UserProfile = () => {
 
   const checkUserInFollowing = loggedInUser.following.find(
     (user) => user._id === selectedUser._id
+  );
+
+  const loggedInUserPosts = allPosts.filter(
+    (post) => post.username === selectedUser.username
   );
 
   useEffect(() => {
@@ -93,7 +97,7 @@ const UserProfile = () => {
           </p>
         </div>
         <div className="flex flex-column flex-center m-s ml-m mr-m">
-          <p className="fw-black">{userPosts?.length}</p>
+          <p className="fw-black">{loggedInUserPosts?.length}</p>
           <p className="fw-semibold">Posts</p>
         </div>
         <div className="flex flex-column flex-center m-s ml-m mr-m">

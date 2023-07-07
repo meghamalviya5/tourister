@@ -1,5 +1,4 @@
-import React, { useContext, useRef } from "react";
-import ReactDom from "react-dom";
+import React, { useContext } from "react";
 import { PostContext } from "../../contexts/PostContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,25 +9,14 @@ import {
 
 import "./Filters.css";
 
-const Filters = () => {
-  const filtersRef = useRef();
-  const { state, dispatch, sortByTrending, sortByLatest, sortByOldest } =
+const Filters = (props) => {
+  const { state, sortByTrending, sortByLatest, sortByOldest } =
     useContext(PostContext);
+  if (!props.show) return null;
 
-  const closeFilters = (e) => {
-    // if (e.target === filtersRef.current) {
-    dispatch({ type: "SET_FILTER_MODAL_STATUS", payload: false });
-    // }
-  };
   return (
-    <div className="overlay" ref={filtersRef} onClick={closeFilters}>
-      <div
-        className="filters flex flex-dir-col"
-        onClick={(e) => {
-          // do not close modal if anything inside modal content is clicked
-          e.stopPropagation();
-        }}
-      >
+    <div className="overlay">
+      <div className="filters flex flex-dir-col">
         <button
           className="flex flex-gap-2 pt-xs pb-xs pl-xs pr-xs txt-left"
           onClick={sortByTrending}
