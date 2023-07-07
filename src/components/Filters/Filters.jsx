@@ -16,17 +16,19 @@ const Filters = () => {
     useContext(PostContext);
 
   const closeFilters = (e) => {
-    if (e.target === filtersRef.current) {
-      dispatch({ type: "SET_FILTER_MODAL_STATUS", payload: false });
-    }
+    // if (e.target === filtersRef.current) {
+    dispatch({ type: "SET_FILTER_MODAL_STATUS", payload: false });
+    // }
   };
-  return ReactDom.createPortal(
-    <div
-      className="absolute filter-container"
-      ref={filtersRef}
-      onClick={closeFilters}
-    >
-      <div className="filters flex flex-dir-col">
+  return (
+    <div className="overlay" ref={filtersRef} onClick={closeFilters}>
+      <div
+        className="filters flex flex-dir-col"
+        onClick={(e) => {
+          // do not close modal if anything inside modal content is clicked
+          e.stopPropagation();
+        }}
+      >
         <button
           className="flex flex-gap-2 pt-xs pb-xs pl-xs pr-xs txt-left"
           onClick={sortByTrending}
@@ -61,8 +63,7 @@ const Filters = () => {
           <FontAwesomeIcon icon={faCaretDown} /> Oldest
         </button>
       </div>
-    </div>,
-    document.getElementById("portal")
+    </div>
   );
 };
 
