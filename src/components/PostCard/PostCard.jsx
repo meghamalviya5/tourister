@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart as faHeartSolid,
   faBookmark as faBookmarkSolid,
+  faEllipsis,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -14,7 +15,7 @@ import {
 import { AuthContext, PostContext } from "../..";
 import EditDeletePost from "../EditDeletePost/EditDeletePost";
 import moment from "moment";
-import Follow from "../FollowUnfollow/FollowUnfollow";
+import FollowUnfollow from "../FollowUnfollow/FollowUnfollow";
 import { Link, useParams } from "react-router-dom";
 
 const PostCard = ({ post }) => {
@@ -57,7 +58,7 @@ const PostCard = ({ post }) => {
 
             <div className="relative">
               <p className="" onClick={() => handleEditDeleteShow(post._id)}>
-                ∙∙∙
+                <FontAwesomeIcon icon={faEllipsis} />
               </p>
 
               {state.selectedPostForEditDelete === post._id &&
@@ -65,7 +66,7 @@ const PostCard = ({ post }) => {
                 authState.loggedInUser.username === post.username ? (
                   <EditDeletePost selectedPost={post} />
                 ) : (
-                  <Follow selectedPost={post} />
+                  <FollowUnfollow selectedPost={post} />
                 )
               ) : null}
             </div>

@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <div className="flex flex-space-between p-s pl-xxl txt-m ml-m">
-      <Link to="/">
+      <Link to="/" className="brand-name">
         <span>Tourist Connect</span>
       </Link>
       <div className="black-color fw-semibold">

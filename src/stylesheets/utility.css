@@ -385,6 +385,10 @@ h6 {
   text-align: center;
 }
 
+.txt-left {
+  text-align: left;
+}
+
 .txt-underline {
   text-decoration: underline;
 }

@@ -72,7 +72,7 @@ const Sidebar = () => {
             </div> */}
 
             <button
-              className="mt-m p-s primary-bg white-color border-none outline-transparent new-post-btn"
+              className="mt-m p-s primary-bg white-color br-s border-none outline-transparent new-post-btn"
               onClick={() =>
                 dispatch({
                   type: "SET_CREATE_POST_MODAL_STATUS",

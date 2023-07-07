@@ -46,7 +46,7 @@ const UsersSidebar = () => {
 
   return (
     <aside className="mt-xl mr-xxl sidebar2">
-      <div className="white-bg mb-m pl-s border flex flex-row flex-center nowrap">
+      <div className="white-bg mb-m pl-s border br-s flex flex-row flex-center nowrap">
         <FontAwesomeIcon icon={faSearch} />
         <input
           type="search"

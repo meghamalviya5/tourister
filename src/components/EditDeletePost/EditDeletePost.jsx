@@ -1,29 +1,34 @@
 import React, { useContext } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+
 import { PostContext } from "../../contexts/PostContext";
 import EditPostModal from "../Modals/EditPostModal";
+import "./EditDeletePost.css";
 
 const EditDeletePost = ({ selectedPost }) => {
   const { deletePost, state, dispatch } = useContext(PostContext);
 
   return (
-    <div className="flex flex-col  bg-dark absolute right-1.5 w-max rounded shadow-dark shadow-lg border border-darkGrey">
+    <div className="flex flex-column absolute w-max br-s shadow-lg border">
       {console.log(state.editPostModal, "--editPostModal")}
       <button
-        className="py-2 px-4 text-left cursor-pointer hover:bg-[#001e396b]"
+        className="flex flex-gap-2 pt-xs pb-xs pl-xs pr-xs txt-left"
         onClick={() =>
           dispatch({ type: "SET_EDIT_MODAL_STATUS", payload: true })
         }
       >
-        Edit
+        <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon> Edit
       </button>
       {state.editPostModal ? (
         <EditPostModal selectedPost={selectedPost} />
       ) : null}
       <button
-        className="py-2 px-4 text-left cursor-pointer text-red hover:bg-[#001e396b]"
+        className="flex flex-gap-2 pt-xs pb-xs pl-xs pr-xs txt-left text-red hover:bg-[#001e396b]"
         onClick={() => deletePost(selectedPost._id)}
       >
-        Delete
+        <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon> Delete
       </button>
     </div>
   );
