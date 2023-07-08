@@ -1,0 +1,11 @@
+.search-result {
+  background: rgb(231, 224, 242);
+  border: 1px solid black;
+  border-radius: 0.6rem;
+  box-shadow: 1rem;
+}
+
+.search-user:hover {
+  background: rgb(236, 226, 239);
+  /* color: rgb(30, 28, 28); */
+}

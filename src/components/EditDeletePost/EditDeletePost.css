@@ -1,0 +1,12 @@
+.shadow-lg,
+.shadow-xl {
+  box-shadow: 0 0 #0000, 0 0 #0000, rgb(248, 225, 248);
+}
+
+.right-1\.5 {
+  right: 0.375rem;
+}
+
+.w-max {
+  width: max-content;
+}

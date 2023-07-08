@@ -1,11 +1,4 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+@import url(./style.css);
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -13,7 +6,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -26,6 +19,143 @@
 
 .App-link {
   color: #61dafb;
+} */
+
+.App {
+  font-family: sans-serif;
+}
+.App button.update-post {
+  padding: 13px 29px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background: crimson;
+  color: white;
+  cursor: pointer;
+}
+
+#portal .container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#portal .filter-container {
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  /* height: 100vh; */
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: center; */
+  background: rgba(0, 0, 0, 0);
+}
+
+.container .editModal,
+.create-post-modal {
+  z-index: 1;
+  width: 30rem;
+  overflow-y: auto;
+  /* height: 220px; */
+  background: white;
+  display: flex;
+  /* align-items: center;
+  justify-content: center; */
+  border-radius: 5px;
+  position: relative;
+  animation: animate 0.3s;
+}
+
+.container .edit-profile-modal {
+  /* z-index: 1; */
+  width: 22rem;
+  /* overflow-y: auto; */
+  /* height: 220px; */
+  background: white;
+  display: flex;
+  /* overflow-x: hidden;
+  overflow-y: auto; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  border-radius: 5px;
+  /* position: relative; */
+  /* animation: animate 0.3s; */
+}
+
+.container .following-modal,
+.followers-modal {
+  /* z-index: 1; */
+  width: 20rem;
+  padding: 1rem;
+  /* height: 10rem; */
+  /* max-height: 15rem; */
+  overflow-y: auto;
+  background: white;
+  display: flex;
+  /* align-items: center; */
+  gap: 0.5rem;
+  border-radius: 5px;
+  /* justify-content: center; */
+
+  /* position: relative; */
+  /* animation: animate 0.3s; */
+}
+
+.editModal .btn-close-post,
+.create-post-modal .btn-close {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  padding: 0.4rem 0.7rem;
+  background: crimson;
+  color: white;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.following-modal .btn-close,
+.followers-modal .btn-close,
+.edit-profile-modal .btn-close {
+  /* position: absolute; */
+  /* top: 7px;
+  right: 7px; */
+  padding: 0.4rem 0.7rem;
+  background: crimson;
+  color: white;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.edit-profile-modal .btn-save {
+  /* position: absolute; */
+  /* top: 7px;
+  right: 7px; */
+  padding: 0.7rem 1rem;
+  background: var(--primary-color);
+  margin: auto;
+  color: white;
+  font-weight: bold;
+  border: none;
+  /* outline: none; */
+  border-radius: 0.5rem;
+  /* cursor: pointer; */
 }
 
 @keyframes App-logo-spin {

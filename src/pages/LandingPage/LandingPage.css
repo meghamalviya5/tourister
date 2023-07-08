@@ -1,0 +1,26 @@
+.landing-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  gap: 10rem;
+}
+
+.landing-page-box {
+  height: 70vh;
+  width: 25rem;
+}
+
+.landing-page-image {
+  height: 85vh;
+  width: 30rem;
+}
+
+.brand-name {
+  color: darkmagenta;
+}
+
+.txt-gt-l {
+  font-size: 2.3rem;
+  line-height: 2.7rem;
+}

@@ -1,13 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import "font-awesome/css/font-awesome.min.css";
+import { makeServer } from "./server";
+import AuthProvider, { AuthContext } from "./contexts/AuthContext";
+import PostProvider, { PostContext } from "./contexts/PostContext";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// import your fontawesome library
+import "./fontawesome";
+
+// Call make Server
+makeServer();
+
+export { PostContext };
+
+export { AuthContext };
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <AuthProvider>
+        <PostProvider>
+          <App />
+        </PostProvider>
+      </AuthProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
