@@ -104,6 +104,10 @@ h6 {
   margin: auto;
 }
 
+.m-tb-auto {
+  margin: auto 0;
+}
+
 .mt-xxl {
   margin-top: var(--xxl-size);
 }
@@ -528,6 +532,10 @@ h6 {
   gap: 1rem;
 }
 
+.flex-gap-20 {
+  gap: 5rem;
+}
+
 .flex-space-around {
   justify-content: space-around;
 }
@@ -554,6 +562,10 @@ h6 {
 
 .fixed {
   position: fixed;
+}
+
+.sticky {
+  position: sticky;
 }
 
 /* opacity */

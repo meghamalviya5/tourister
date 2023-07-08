@@ -20,7 +20,7 @@ import { Link, useParams } from "react-router-dom";
 import "./PostCard.css";
 
 const PostCard = ({ post }) => {
-  const { postId } = useParams();
+  // const { postId } = useParams();
   const { state, handleEditDeleteShow, dislikePost, likePost } =
     useContext(PostContext);
 
@@ -30,8 +30,8 @@ const PostCard = ({ post }) => {
     removeFromBookmark,
   } = useContext(AuthContext);
 
-  console.log("postId : ", postId);
-  post = postId ? state.allPosts.find((post) => post._id === postId) : post;
+  //console.log("postId : ", postId);
+  // post = postId ? state.allPosts.find((post) => post._id === postId) : post;
   const user = authState.users.find((user) => user.username === post.username);
 
   return (
@@ -75,8 +75,8 @@ const PostCard = ({ post }) => {
           <Link to={`/post-details/${post._id}`}>
             <p className="pr-s pt-xs">{post.content}</p>
           </Link>
-          <div className="flex flex-row nowrap flex-space-between pb-xs pt-m pr-s flex-align-center ">
-            <div className="flex flex-gap-4">
+          <div className="flex flex-row nowrap flex-gap-20 pb-xs pt-m pr-s flex-align-center ">
+            <div className="flex flex-gap-4 w-l">
               <div>
                 {post.likes.likedBy.find(
                   (user) => user.username === authState.loggedInUser.username

@@ -11,6 +11,7 @@ import Profile from "./components/Profile/Profile";
 import Layout from "./components/Layout/Layout";
 import RequiresAuth from "./components/RequiresAuth";
 import PostCard from "./components/PostCard/PostCard";
+import PostDetails from "./components/PostDetails/PostDetails";
 
 function App() {
   return (
@@ -56,7 +57,7 @@ function App() {
             path="post-details/:postId"
             element={
               <RequiresAuth>
-                <PostCard />
+                <PostDetails />
               </RequiresAuth>
             }
           />

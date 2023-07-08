@@ -11,7 +11,7 @@ const Navbar = () => {
   const { signOutHandler } = useContext(AuthContext);
 
   return (
-    <div className="flex flex-space-between p-s pl-xxl txt-m ml-m">
+    <div className="flex flex-space-between p-s pl-xxl txt-m ml-m sticky">
       <Link to="/" className="brand-name">
         <span>Tourist Connect</span>
       </Link>
