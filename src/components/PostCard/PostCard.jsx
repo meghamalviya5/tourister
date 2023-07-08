@@ -21,7 +21,7 @@ import "./PostCard.css";
 
 const PostCard = ({ post }) => {
   const { postId } = useParams();
-  const { state, handleEditDeleteShow, dislikePost, likePost, findUser } =
+  const { state, handleEditDeleteShow, dislikePost, likePost } =
     useContext(PostContext);
 
   const {

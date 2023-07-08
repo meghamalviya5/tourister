@@ -7,19 +7,19 @@ const LandingPage = () => {
     <div>
       <div className="flex flex-row flex-center h-full w-full landing-page">
         <div className="flex flex-column flex-space-between landing-page-box">
-          <h2 className="brand-name">Tourist Connect</h2>
+          <h2 className="brand-name txt-gt-l">Tourist Connect</h2>
           <div className="flex flex-column" style={{ gap: "1.2rem" }}>
             <h2 className="txt-xs">
-              <span className="txt-l grey-color">Follow</span>Travellers around
-              the world
+              <span className="txt-l primary-light-color">Follow</span>
+              Travellers around the world
             </h2>
             <h2 className="txt-xs">
-              <span className="txt-l grey-color">Connect</span>With Fellow
-              companions
+              <span className="txt-l primary-light-color">Connect</span>With
+              Fellow companions
             </h2>
             <h2 className="txt-xs">
-              <span className="txt-l grey-color">Share</span>Your Journey &
-              Experience
+              <span className="txt-l primary-light-color">Share</span>Your
+              Journey & Experience
             </h2>
           </div>
           <Link to="/sign-up">

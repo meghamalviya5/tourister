@@ -21,6 +21,7 @@ const CreatePostModal = () => {
     >
       <div className="create-post-modal relative flex flex-column p-s">
         <div className="flex flex-space-between">
+          <div className="txt-s fw-light">Create Post</div>
           <button
             className="btn-close"
             onClick={() =>

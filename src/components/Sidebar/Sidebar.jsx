@@ -2,18 +2,12 @@ import { Link } from "react-router-dom";
 import React, { useContext } from "react";
 import "./Sidebar.css";
 import "../../style.css";
-import { AuthContext } from "../../contexts/AuthContext";
-// import "font-awesome/css/font-awesome.min.css";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOut } from "@fortawesome/free-solid-svg-icons";
-import { PostContext } from "../../contexts/PostContext";
+import { AuthContext, PostContext } from "../..";
 import CreatePostModal from "../Modals/CreatePostModal/CreatePostModal";
 
 const Sidebar = () => {
   const {
     state: { loggedInUser },
-    signOutHandler,
     getUserBookmarks,
     getUserById,
   } = useContext(AuthContext);
@@ -63,14 +57,6 @@ const Sidebar = () => {
               </Link>
             </div>
 
-            {/* <div className="pt-s black-color fw-semibold">
-              <Link to="/landing-page" onClick={signOutHandler}>
-                 //line not reqd//<i className="fa fa-solid fa-user"></i> &nbsp;
-                <FontAwesomeIcon icon={faSignOut} /> &nbsp;
-                <span className="fw-bold">Sign Out</span>
-              </Link>
-            </div> */}
-
             <button
               className="mt-m p-s primary-bg white-color br-s border-none outline-transparent new-post-btn"
               onClick={() =>
@@ -91,7 +77,7 @@ const Sidebar = () => {
               getUserById(loggedInUser?._id);
             }}
           >
-            <div className="flex flex-space-between flex-align-center fixed">
+            <div className="flex flex-space-between flex-align-center fixed profile-div">
               <div className="flex">
                 <div className="grey-bg br-full width-xl height-xl">
                   <img
@@ -105,7 +91,6 @@ const Sidebar = () => {
                   <div className="fw-light grey-color">{`@${loggedInUser?.username}`}</div>
                 </div>
               </div>
-              {/* <div className="grey-color fw-bold">...</div> */}
             </div>
           </Link>
         </div>

@@ -19,7 +19,7 @@ const EditPostModal = ({ selectedPost }) => {
     <div className="container" ref={editModalRef} onClick={closeEditModal}>
       <div className="editModal flex flex-column p-s">
         <div className="flex flex-space-between">
-          <div>Edit Post</div>
+          <div className="txt-s fw-light">Edit Post</div>
           <button
             className="btn-close-post"
             onClick={() =>

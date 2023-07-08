@@ -18,13 +18,13 @@ const SignIn = () => {
         <form method="post" onSubmit={signInHandler}>
           <h3 className="txt-center mb-m txt-l">Login</h3>
           <div className="flex flex-column">
-            <label htmlFor="username">Enter Username</label>
+            <label htmlFor="username">Username</label>
             <input
               id="username"
               type="text"
               className="p-xs txt-s br-s mb-s"
               style={{ border: "1px solid grey" }}
-              placeholder="johndoe12"
+              placeholder="Enter your username"
               value={state.signInDetails.username}
               onChange={(e) =>
                 dispatch({
@@ -42,7 +42,7 @@ const SignIn = () => {
               id="password"
               className="p-xs txt-s br-s flex mb-s items-center"
               type={state.signInDetails.showPassword ? "text" : "password"}
-              placeholder="********"
+              placeholder="Enter your password"
               value={state.signInDetails.password}
               onChange={(e) =>
                 dispatch({

@@ -50,7 +50,7 @@ const EditProfileModal = () => {
         onSubmit={onEditProfileSubmit}
       >
         <div className="flex flex-space-between">
-          <div>Edit Profile</div>
+          <div className="txt-s fw-light">Edit Profile</div>
           <button
             className="btn-close"
             onClick={() =>

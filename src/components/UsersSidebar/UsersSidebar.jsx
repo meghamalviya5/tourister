@@ -46,7 +46,7 @@ const UsersSidebar = () => {
 
   return (
     <aside className="mt-xl mr-xxl sidebar2">
-      <div className="white-bg mb-m pl-s border br-s flex flex-row flex-center nowrap">
+      <div className="white-bg mb-m pl-s border-color br-s flex flex-row flex-center nowrap">
         <FontAwesomeIcon icon={faSearch} />
         <input
           type="search"
@@ -57,7 +57,7 @@ const UsersSidebar = () => {
         />
       </div>
       {searchedUsers.length > 0 ? <SearchSuggestions /> : null}
-      <div className="white-bg">
+      <div className="white-bg border-color br-s">
         <div className="fw-bold flex flex-row flex-space-between flex-align-center border-bottom p-s">
           <div>Suggested Users</div>
         </div>
