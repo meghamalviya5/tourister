@@ -1,11 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { AuthContext, PostContext } from "../..";
 import PostCard from "../PostCard/PostCard";
 
 const UserPosts = () => {
-  const { state, getUserPosts } = useContext(PostContext);
+  const { state } = useContext(PostContext);
   const {
-    state: { selectedUser, users },
+    state: { selectedUser },
   } = useContext(AuthContext);
 
   // useEffect(() => {

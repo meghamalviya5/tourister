@@ -37,12 +37,16 @@ const UserFeed = () => {
     dispatch({ type: "UPDATE_FILTERED_POSTS", payload: postsToShowInUserFeed });
   };
 
-  useEffect(() => {
-    console.log(
-      "in useEffect userfeed  === " + loggedInUser.following.toString()
-    );
-    userFeedPosts();
-  }, [loggedInUser.following, state.allPosts]);
+  useEffect(
+    () => {
+      console.log(
+        "in useEffect userfeed  === " + loggedInUser.following.toString()
+      );
+      userFeedPosts();
+    },
+    // eslint-disable-next-line
+    [loggedInUser.following, state.allPosts]
+  );
 
   return (
     <div>
