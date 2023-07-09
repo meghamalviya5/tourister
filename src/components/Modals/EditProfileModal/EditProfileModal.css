@@ -25,3 +25,9 @@
   background-color: rgb(232, 225, 237);
   border: 1px solid rgb(228, 219, 231);
 }
+
+.edit-field {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+}

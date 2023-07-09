@@ -7,7 +7,7 @@ import EditProfileModal from "../Modals/EditProfileModal/EditProfileModal";
 
 const UserProfile = () => {
   const {
-    state: { allPosts, userPosts },
+    state: { allPosts },
   } = useContext(PostContext);
   const {
     state: {
@@ -31,10 +31,14 @@ const UserProfile = () => {
     (post) => post.username === selectedUser.username
   );
 
-  useEffect(() => {
-    console.log("in get users call useEffect");
-    getUsers();
-  }, [loggedInUser]);
+  useEffect(
+    () => {
+      console.log("in get users call useEffect");
+      getUsers();
+    },
+    // eslint-disable-next-line
+    [loggedInUser]
+  );
 
   console.log("hihi in userprofile");
   console.log("selectedUser in userprofile = ", selectedUser);

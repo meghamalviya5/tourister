@@ -10,3 +10,13 @@
 .w-max {
   width: max-content;
 }
+
+.btn-color-theme {
+  background: #e1aff9;
+  border: none;
+  font-weight: bold;
+}
+
+.btn-color-theme:hover {
+  background: #c979ed;
+}

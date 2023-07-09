@@ -1,5 +1,6 @@
 .search-result {
-  background: dimgray;
+  /* background: dimgray; */
+  background: #100d12;
 }
 
 /* .filter-container { */
@@ -24,4 +25,13 @@
   z-index: 1;
   top: 0;
   left: 0; */
+}
+
+.btn-color-theme {
+  background: #e1aff9;
+  border: none;
+}
+
+.btn-color-theme:hover {
+  background: #c979ed;
 }

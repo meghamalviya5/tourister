@@ -121,6 +121,9 @@ export const authReducer = (state, action) => {
     case "UPDATE_SEARCHED_USERS":
       return { ...state, searchedUsers: action.payload };
 
+    case "UPDATE_SEARCH_VALUE":
+      return { ...state, searchValue: action.payload };
+
     case "SET_EDIT_PROFILE_MODAL_STATUS":
       return { ...state, editProfileModal: action.payload };
 
@@ -128,7 +131,7 @@ export const authReducer = (state, action) => {
       return {
         ...state,
         editProfileDetails: action.payload,
-        selectedUser: { ...state.selectedUser, ...action.payload },
+        // selectedUser: { ...state.selectedUser, ...action.payload },
       };
 
     case "SET_ENCODED_TOKEN":

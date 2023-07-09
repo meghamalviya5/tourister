@@ -24,10 +24,10 @@ const FollowUnfollow = ({ selectedPost }) => {
   );
 
   return (
-    <div className="flex flex-column absolute br-s border">
+    <div className="flex flex-column absolute br-s border ">
       {isFollowing ? (
         <button
-          className="flex flex-gap-2 pt-xs pb-xs pl-xs pr-xs txt-left"
+          className="flex flex-gap-2 pt-xs pb-xs pl-xs pr-xs txt-left btn-color-theme"
           onClick={() => unfollowUser(userPost._id)}
         >
           <FontAwesomeIcon icon={faUserXmark} /> Unfollow

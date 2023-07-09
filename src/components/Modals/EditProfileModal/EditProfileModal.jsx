@@ -2,13 +2,7 @@ import React, { useContext, useRef } from "react";
 import ReactDom from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
-
-// import girl from "../../../assets/girl.png";
-// import woman from "../../../assets/woman.png";
-// import womanCam from "../../../assets/woman-cam.png";
-// import travellerMap from "../../../assets/traveller-map.png";
-// import adventurer from "../../../assets/adventurer.png";
-// import traveller from "../../../assets/traveller.png";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 import { AuthContext } from "../../../contexts/AuthContext";
 import "../Modal.css";
@@ -85,9 +79,6 @@ const EditProfileModal = () => {
           </div>
         </div>
         <div className="flex flex-center border p-xs mt-xs mb-xs">
-          {/* <label className="txt-lt-s" htmlFor="avatar">
-            Avatar
-          </label> */}
           <div className="relative">
             <img
               src={avatar}
@@ -113,63 +104,53 @@ const EditProfileModal = () => {
             Name{" "}
           </label>
           <div> {`${firstName} ${lastName}`}</div>
-          {/* <input id="name" type="text" value={`${firstName} ${lastName}`} /> */}
         </div>
         <div className="border br-s p-xs non-edit-bg-color">
           <label className="txt-lt-s" htmlFor="username">
             Username{" "}
           </label>
           <div> {username}</div>
-          {/* <input
-              id="username"
-              type="text"
-              value={username}
-              onChange={(e) => handleEditProfileChange(e, "username")}
-            /> */}
         </div>
         <div className="border br-s p-xs edit-bg-color">
           <label className="txt-lt-s" htmlFor="bio">
             Bio
           </label>
-          <div>
+          <div className="relative">
             <input
               id="bio"
-              className="border-none outline-none w-full edit-bg-color"
+              className="border-none outline-none w-full edit-bg-color pr-m"
               type="text"
               value={bio}
               onChange={(e) => handleEditProfileChange(e, "bio")}
             />
+            <FontAwesomeIcon
+              icon={faEdit}
+              className="edit-field"
+            ></FontAwesomeIcon>
           </div>
         </div>
         <div className="border br-s p-xs edit-bg-color">
           <label className="txt-lt-s" htmlFor="website">
             Website
           </label>
-          <div>
+          <div className="relative">
             <input
               id="website"
-              className="border-none outline-none w-full edit-bg-color"
+              className="border-none outline-none w-full edit-bg-color  pr-m"
               type="text"
               value={website}
               onChange={(e) => handleEditProfileChange(e, "website")}
             />
+            <FontAwesomeIcon
+              icon={faEdit}
+              className="edit-field"
+            ></FontAwesomeIcon>
           </div>
         </div>
         <div className="flex">
           <button type="submit" className="flex-center btn-save">
             Save
           </button>
-          {/* <button
-            type="button"
-            onClick={() =>
-              dispatch({
-                type: "SET_EDIT_PROFILE_MODAL_STATUS",
-                payload: false,
-              })
-            }
-          >
-            Cancel
-          </button> */}
         </div>
       </form>
       {/* </div> */}

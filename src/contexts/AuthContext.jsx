@@ -60,6 +60,7 @@ const AuthProvider = ({ children }) => {
     followingModalStatus: false,
     followersModalStatus: false,
     searchedUsers: [],
+    searchValue: "",
     editProfileModal: false,
     encodedToken: "",
   };
@@ -424,6 +425,7 @@ const AuthProvider = ({ children }) => {
           user.lastName.toLowerCase().includes(e.target.value.toLowerCase())
       );
     }
+    dispatch({ type: "UPDATE_SEARCH_VALUE", payload: e.target.value });
     dispatch({ type: "UPDATE_SEARCHED_USERS", payload: foundUsers });
   };
 

@@ -10,7 +10,7 @@ const SignIn = () => {
     <Spinner />
   ) : (
     <div className="flex flex-column flex-center h-full w-full">
-      <h2 className="fw-black txt-xl mb-m">Tourist Connect</h2>
+      <h2 className="branch-name fw-black txt-xl mb-m">Tourist Connect</h2>
       <div
         className="white-bg br-m p-xxl pt-xl pb-xl"
         style={{ width: "30rem" }}
