@@ -26,6 +26,7 @@ const PostProvider = ({ children }) => {
     filterModalStatus: false,
     createPostModalStatus: false,
     filters: { sortBy: "Latest" },
+    showEmoji: false,
   };
 
   const [state, dispatch] = useReducer(postReducer, initialState);

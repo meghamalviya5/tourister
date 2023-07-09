@@ -7,6 +7,7 @@ const SearchSuggestions = () => {
   const {
     state: { searchedUsers },
     getUserById,
+    dispatch,
   } = useContext(AuthContext);
 
   const { getUserPosts } = useContext(PostContext);
@@ -19,6 +20,8 @@ const SearchSuggestions = () => {
           onClick={() => {
             getUserPosts(user.username);
             getUserById(user._id);
+            dispatch({ type: "UPDATE_SEARCHED_USERS", payload: [] });
+            dispatch({ type: "UPDATE_SEARCH_VALUE", payload: "" });
           }}
           key={user._id}
         >

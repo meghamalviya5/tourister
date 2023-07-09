@@ -11,24 +11,15 @@ import SearchSuggestions from "../SearchSuggestions/SearchSuggestions";
 
 const UsersSidebar = () => {
   const {
-    state: { loggedInUser, users, searchedUsers },
+    state: { loggedInUser, users, searchedUsers, searchValue },
     getUserById,
     followUser,
     searchUsers,
   } = useContext(AuthContext);
 
-  const {
-    // state: { users },
-    getUserPosts,
-  } = useContext(PostContext);
+  const { getUserPosts } = useContext(PostContext);
 
   console.log("in user sidebar");
-  // console.log("loggedInUser -----", loggedInUser);
-  // console.log("users -----", users);
-
-  // const usersToFollow = users.filter(
-  //   (user) => user?.username !== loggedInUser?.username
-  // );
 
   const usersToFollow = users.filter((user) => {
     if (user._id !== loggedInUser._id) {
@@ -53,6 +44,7 @@ const UsersSidebar = () => {
           name="search-bar"
           className="search-bar border-none outline-transparent p-s width-16"
           placeholder="Search Users"
+          value={searchValue}
           onChange={searchUsers}
         />
       </div>
