@@ -10,7 +10,7 @@ const SignIn = () => {
     <Spinner />
   ) : (
     <div className="flex flex-column flex-center h-full w-full">
-      <h2 className="branch-name fw-black txt-xl mb-m">Tourist Connect</h2>
+      <h2 className="brand-name fw-black txt-xl mb-m">Tourist Connect</h2>
       <div
         className="white-bg br-m p-xxl pt-xl pb-xl"
         style={{ width: "30rem" }}
@@ -40,7 +40,7 @@ const SignIn = () => {
             </label>
             <input
               id="password"
-              className="p-xs txt-s br-s flex mb-s items-center"
+              className="p-xs txt-s flex mb-s items-center"
               type={state.signInDetails.showPassword ? "text" : "password"}
               placeholder="Enter your password"
               value={state.signInDetails.password}
