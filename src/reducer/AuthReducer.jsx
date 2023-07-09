@@ -131,7 +131,7 @@ export const authReducer = (state, action) => {
       return {
         ...state,
         editProfileDetails: action.payload,
-        selectedUser: { ...state.selectedUser, ...action.payload },
+        // selectedUser: { ...state.selectedUser, ...action.payload },
       };
 
     case "SET_ENCODED_TOKEN":

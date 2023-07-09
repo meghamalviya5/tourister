@@ -14,7 +14,7 @@ const EditDeletePost = ({ selectedPost }) => {
     <div className="flex flex-column absolute w-max br-s shadow-lg border">
       {console.log(state.editPostModal, "--editPostModal")}
       <button
-        className="flex flex-gap-2 pt-xs pb-xs pl-xs pr-xs txt-left"
+        className="flex flex-gap-2 pt-xs pb-xs pl-xs pr-xs txt-left btn-color-theme"
         onClick={() =>
           dispatch({ type: "SET_EDIT_MODAL_STATUS", payload: true })
         }
@@ -25,7 +25,7 @@ const EditDeletePost = ({ selectedPost }) => {
         <EditPostModal selectedPost={selectedPost} />
       ) : null}
       <button
-        className="flex flex-gap-2 pt-xs pb-xs pl-xs pr-xs txt-left text-red hover:bg-[#001e396b]"
+        className="flex flex-gap-2 pt-xs pb-xs pl-xs pr-xs txt-left txt-red btn-color-theme"
         onClick={() => deletePost(selectedPost._id)}
       >
         <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon> Delete

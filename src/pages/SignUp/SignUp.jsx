@@ -12,7 +12,7 @@ const SignUp = () => {
     <Spinner />
   ) : (
     <div className="flex flex-column flex-center h-full w-full">
-      <h2 className="fw-black  mb-m">Tourist Connect</h2>
+      <h2 className="brand-name fw-black  mb-m">Tourist Connect</h2>
       <div className="white-bg br-m p-xxl pt-l pb-l" style={{ width: "30rem" }}>
         <form method="post" onSubmit={newUserSignUpHandler}>
           <h3 className="txt-center mb-s txt-l">Sign Up</h3>

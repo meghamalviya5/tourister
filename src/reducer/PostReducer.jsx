@@ -17,6 +17,13 @@ export const postReducer = (state, action) => {
         showEditDelete: !state.showEditDelete,
       };
 
+    case "SET_EDIT_DELETE_STATUS": {
+      return {
+        ...state,
+        showEditDelete: action.payload,
+      };
+    }
+
     case "EDIT_POST":
       return { ...state, allPosts: action.payload };
 

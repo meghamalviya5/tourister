@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <div className="flex flex-space-between p-s pl-xxl txt-m ml-m sticky">
       <Link to="/" className="brand-name">
-        <span>Tourist Connect</span>
+        <span className="brand-name">Tourist Connect</span>
       </Link>
       <div className="black-color fw-semibold">
         <Link
