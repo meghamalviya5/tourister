@@ -16,7 +16,7 @@ const SignIn = () => {
         style={{ width: "30rem" }}
       >
         <form method="post" onSubmit={signInHandler}>
-          <h3 className="txt-center mb-m txt-l">Login</h3>
+          <h3 className="txt-center mb-m txt-l">Sign In</h3>
           <div className="flex flex-column">
             <label htmlFor="username">Username</label>
             <input
